@@ -9,10 +9,10 @@ namespace DnsWatcher.Application.Common.Interfaces
 {
 	public interface IDnsWatcherDbContext
 	{
-		DbSet<User> Users { get; }
-
-		DbSet<DnsServer> DnsServers { get; }
-		DbSet<WatchedDomain> WatchedDomains { get; }
+		DbSet<User> Users { get; set; }
+		
+		DbSet<WatchedDomain> WatchedDomains { get; set; }
+		DbSet<DnsServer> DnsServers { get; set; }
 
 		Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken());
 	}
