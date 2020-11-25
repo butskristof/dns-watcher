@@ -6,6 +6,8 @@
 		Invalid,
 		NotUnique,
 		IdsDontMatch,
-		DataChanged
+		DataChanged,
+		InvalidDomainName,
+		InvalidIpAddress
 	}
 }

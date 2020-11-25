@@ -2,7 +2,7 @@
 
 namespace DnsWatcher.Domain.Entities.Domains
 {
-	public class Domain : EntityBase
+	public class WatchedDomain : EntityBase
 	{
 		public string DomainName { get; set; }
 	}
