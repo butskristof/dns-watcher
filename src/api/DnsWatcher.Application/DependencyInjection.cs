@@ -17,6 +17,7 @@ namespace DnsWatcher.Application
 			services.AddScoped<IJwtHelper, JwtHelper>();
 
 			services.AddScoped<IAuthService, AuthService>();
+			services.AddScoped<IDnsServersService, DnsServersService>();
 
 			return services;
 		}
