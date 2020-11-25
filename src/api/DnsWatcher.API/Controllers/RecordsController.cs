@@ -26,6 +26,12 @@ namespace DnsWatcher.API.Controllers
 
 		#endregion
 
+		[HttpGet("{id:Guid}")]
+		public Task<WatchedRecordDto> GetWatchedRecord(Guid domainId, Guid id)
+		{
+			return _recordsService.GetWatchedRecordByIdAsync(domainId, id);
+		}
+
 		[HttpPost("")]
 		public Task<WatchedRecordDto> CreateWatchedRecord(Guid domainId, CreateWatchedRecordData data)
 		{
@@ -44,6 +50,12 @@ namespace DnsWatcher.API.Controllers
 		public Task DeleteWatchedRecord(Guid domainId, Guid id)
 		{
 			return _recordsService.DeleteWatchedRecordAsync(domainId, id);
+		}
+
+		[HttpPost("{id:Guid}/update")]
+		public Task<WatchedRecordDto> UpdateRecordResults(Guid domainId, Guid id)
+		{
+			return _recordsService.UpdateWatchedRecordResultsAsync(domainId, id);
 		}
 	}
 }

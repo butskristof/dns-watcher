@@ -7,8 +7,10 @@ namespace DnsWatcher.Application.Services.Interfaces
 {
 	public interface IWatchedRecordsService
 	{
+		Task<WatchedRecordDto> GetWatchedRecordByIdAsync(Guid domainId, Guid id);
 		Task<WatchedRecordDto> CreateWatchedRecordAsync(Guid domainId, CreateWatchedRecordData data);
 		Task<WatchedRecordDto> UpdateWatchedRecordAsync(Guid domainId, UpdateWatchedRecordData data);
 		Task DeleteWatchedRecordAsync(Guid domainId, Guid id);
+		Task<WatchedRecordDto> UpdateWatchedRecordResultsAsync(Guid domainId, Guid id);
 	}
 }
