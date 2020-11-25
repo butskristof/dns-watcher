@@ -9,6 +9,6 @@ namespace DnsWatcher.Application.Services.Interfaces
 	{
 		Task<WatchedRecordDto> CreateWatchedRecordAsync(Guid domainId, CreateWatchedRecordData data);
 		Task<WatchedRecordDto> UpdateWatchedRecordAsync(Guid domainId, UpdateWatchedRecordData data);
-		Task DeleteWatchedRecordAsync(Guid id);
+		Task DeleteWatchedRecordAsync(Guid domainId, Guid id);
 	}
 }

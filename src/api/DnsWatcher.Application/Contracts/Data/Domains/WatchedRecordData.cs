@@ -7,7 +7,7 @@ namespace DnsWatcher.Application.Contracts.Data.Domains
 	{
 		public RecordType RecordType { get; set; }
 		public string ExpectedIpAddress { get; set; }
-		public int ExpectedPort { get; set; }
+		public int ExpectedTimeToLive { get; set; }
 	}
 
 	public class CreateWatchedRecordData : WatchedRecordData

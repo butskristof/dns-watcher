@@ -13,7 +13,7 @@ namespace DnsWatcher.Application.Contracts.Data.Domains.Validators
 				.Cascade(CascadeMode.Stop)
 				.IpAddress();
 			
-			RuleFor(e => e.ExpectedPort)
+			RuleFor(e => e.ExpectedTimeToLive)
 				.Cascade(CascadeMode.Stop)
 				.Port();
 		}

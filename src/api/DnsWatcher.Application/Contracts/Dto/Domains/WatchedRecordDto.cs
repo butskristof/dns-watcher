@@ -9,7 +9,7 @@ namespace DnsWatcher.Application.Contracts.Dto.Domains
 	{
 		public RecordType RecordType { get; set; }
 		public string ExpectedIpAddress { get; set; }
-		public int ExpectedPort { get; set; }
+		public int ExpectedTimeToLive { get; set; }
 
 		public void Mapping(Profile profile)
 		{
