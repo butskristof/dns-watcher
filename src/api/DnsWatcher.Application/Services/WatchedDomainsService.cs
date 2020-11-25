@@ -45,7 +45,7 @@ namespace DnsWatcher.Application.Services
 			};
 		}
 
-		private async Task<WatchedDomain> GetDomainAsync(Guid id)
+		public async Task<WatchedDomain> GetDomainAsync(Guid id)
 		{
 			return await _context.WatchedDomains
 				.Include(e => e.WatchedRecords)

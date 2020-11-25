@@ -19,6 +19,8 @@ namespace DnsWatcher.Application.Contracts.Mappings
 			CreateMap<UpdateDnsServerData, DnsServer>();
 			CreateMap<CreateWatchedDomainData, WatchedDomain>();
 			CreateMap<UpdateWatchedDomainData, WatchedDomain>();
+			CreateMap<CreateWatchedRecordData, WatchedRecord>();
+			CreateMap<UpdateWatchedRecordData, WatchedRecord>();
 		}
 
 		private void ApplyMappingsFromAssembly(Assembly assembly)
