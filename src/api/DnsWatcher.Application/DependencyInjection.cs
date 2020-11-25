@@ -15,7 +15,7 @@ namespace DnsWatcher.Application
 			services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 			services.AddScoped<IJwtHelper, JwtHelper>();
-			
+
 			services.AddScoped<IAuthService, AuthService>();
 
 			return services;

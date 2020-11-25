@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using DnsWatcher.Common.Constants;
+﻿using DnsWatcher.Common.Constants;
 using DnsWatcher.Common.Enumerations;
 using FluentValidation;
 

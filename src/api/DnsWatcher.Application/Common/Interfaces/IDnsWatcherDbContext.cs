@@ -10,7 +10,7 @@ namespace DnsWatcher.Application.Common.Interfaces
 	public interface IDnsWatcherDbContext
 	{
 		DbSet<User> Users { get; set; }
-		
+
 		DbSet<WatchedDomain> WatchedDomains { get; set; }
 		DbSet<DnsServer> DnsServers { get; set; }
 

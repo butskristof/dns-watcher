@@ -1,5 +1,4 @@
 ﻿using DnsWatcher.Application.Common.Interfaces;
-using DnsWatcher.Application.Helpers.Interfaces;
 using DnsWatcher.Common.Helpers.Interfaces;
 using DnsWatcher.Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
