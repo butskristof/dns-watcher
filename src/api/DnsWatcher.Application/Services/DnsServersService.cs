@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DnsWatcher.Application.Services
 {
-	public class DnsServersService : IDnsServersService
+	internal class DnsServersService : IDnsServersService
 	{
 		#region construction
 		
