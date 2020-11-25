@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using AutoMapper;
 using DnsWatcher.Application.Common.Interfaces;
@@ -7,6 +8,7 @@ using DnsWatcher.Application.Contracts.Data.Servers;
 using DnsWatcher.Application.Contracts.Dto.Servers;
 using DnsWatcher.Application.Services.Interfaces;
 using DnsWatcher.Common.Exceptions;
+using DnsWatcher.Domain.Entities.Servers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -50,9 +52,14 @@ namespace DnsWatcher.Application.Services
 			return _mapper.Map<DnsServerDto>(server);
 		}
 
-		public Task<DnsServerDto> CreateDnsServer(CreateDnsServerData data)
+		public async Task<DnsServerDto> CreateDnsServerAsync(CreateDnsServerData data)
 		{
-			throw new NotImplementedException();
+			var server = _mapper.Map<DnsServer>(data);
+
+			_context.DnsServers.Add(server);
+			await _context.SaveChangesAsync();
+
+			return _mapper.Map<DnsServerDto>(server);
 		}
 	}
 }

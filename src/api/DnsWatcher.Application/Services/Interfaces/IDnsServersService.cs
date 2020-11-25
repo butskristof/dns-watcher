@@ -9,6 +9,6 @@ namespace DnsWatcher.Application.Services.Interfaces
 	{
 		Task<DnsServersDto> GetDnsServersAsync();
 		Task<DnsServerDto> GetDnsServerByIdAsync(Guid id);
-		Task<DnsServerDto> CreateDnsServer(CreateDnsServerData data);
+		Task<DnsServerDto> CreateDnsServerAsync(CreateDnsServerData data);
 	}
 }

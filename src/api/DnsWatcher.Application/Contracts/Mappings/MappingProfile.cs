@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Reflection;
 using AutoMapper;
+using DnsWatcher.Application.Contracts.Data.Servers;
+using DnsWatcher.Domain.Entities.Servers;
 
 namespace DnsWatcher.Application.Contracts.Mappings
 {
@@ -10,6 +12,8 @@ namespace DnsWatcher.Application.Contracts.Mappings
 		public MappingProfile()
 		{
 			ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
+
+			CreateMap<CreateDnsServerData, DnsServer>();
 		}
 
 		private void ApplyMappingsFromAssembly(Assembly assembly)

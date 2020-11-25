@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using DnsWatcher.Application.Contracts.Data.Servers;
 using DnsWatcher.Application.Contracts.Dto.Servers;
 using DnsWatcher.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -31,9 +31,15 @@ namespace DnsWatcher.API.Controllers
 		}
 
 		[HttpGet("{id:Guid}")]
-		public Task<DnsServerDto> GetDnsServers(Guid id)
+		public Task<DnsServerDto> GetDnsServer(Guid id)
 		{
 			return _dnsServersService.GetDnsServerByIdAsync(id);
+		}
+		
+		[HttpPost("")]
+		public Task<DnsServerDto> CreateDnsServer(CreateDnsServerData data)
+		{
+			return _dnsServersService.CreateDnsServerAsync(data);
 		}
 	}
 }
