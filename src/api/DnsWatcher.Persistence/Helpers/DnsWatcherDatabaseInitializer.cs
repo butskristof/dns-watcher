@@ -1,33 +1,34 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DnsWatcher.Persistence.Context;
 using DnsWatcher.Persistence.Helpers.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace DnsWatcher.Persistence.Helpers
 {
 	public class DnsWatcherDatabaseInitializer : IDatabaseInitializer
 	{
-		public Task SeedAsync()
+		public async Task SeedAsync()
 		{
 			_logger.LogInformation("Starting database seed.");
+			if (!await _context.Users.AnyAsync())
+			{
+				// seed users
+			}
 			_logger.LogInformation("Finished database seed.");
-			return Task.CompletedTask;
 		}
 
 		#region construction
 
 		private readonly DnsWatcherDbContext _context;
 		private readonly ILogger<DnsWatcherDatabaseInitializer> _logger;
-		private readonly IServiceProvider _serviceProvider;
+		// private readonly IServiceProvider _serviceProvider;
 
 		public DnsWatcherDatabaseInitializer(DnsWatcherDbContext context,
-			ILogger<DnsWatcherDatabaseInitializer> logger,
-			IServiceProvider serviceProvider)
+			ILogger<DnsWatcherDatabaseInitializer> logger)
 		{
 			_context = context;
 			_logger = logger;
-			_serviceProvider = serviceProvider;
 		}
 
 		#endregion

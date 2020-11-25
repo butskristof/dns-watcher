@@ -1,4 +1,5 @@
-﻿namespace DnsWatcher.Domain.Enumerations
+﻿// ReSharper disable InconsistentNaming
+namespace DnsWatcher.Domain.Enumerations
 {
 	public enum RecordType
 	{
