@@ -19,6 +19,8 @@ namespace DnsWatcher.Application
 			services.AddScoped<IAuthService, AuthService>();
 			services.AddScoped<IDnsServersService, DnsServersService>();
 			services.AddScoped<IWatchedDomainsService, WatchedDomainsService>();
+			services.AddScoped<IWatchedRecordsService, WatchedRecordsService>();
+			services.AddScoped<IDnsService, DnsService>();
 
 			return services;
 		}

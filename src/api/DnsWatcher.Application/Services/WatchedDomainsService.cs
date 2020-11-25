@@ -45,10 +45,11 @@ namespace DnsWatcher.Application.Services
 			};
 		}
 
-		private async Task<WatchedDomain> GetDomainAsync(Guid id)
+		public async Task<WatchedDomain> GetDomainAsync(Guid id)
 		{
 			return await _context.WatchedDomains
-				.FindAsync(id);
+				.Include(e => e.WatchedRecords)
+				.FirstOrDefaultAsync(e => e.Id == id);
 		}
 		
 		public async Task<WatchedDomainDto> GetWatchedDomainByIdAsync(Guid id)

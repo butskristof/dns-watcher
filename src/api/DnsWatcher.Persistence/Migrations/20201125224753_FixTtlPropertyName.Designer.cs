@@ -3,70 +3,23 @@ using System;
 using DnsWatcher.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DnsWatcher.Persistence.Migrations
 {
     [DbContext(typeof(DnsWatcherDbContext))]
-    partial class DnsWatcherDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201125224753_FixTtlPropertyName")]
+    partial class FixTtlPropertyName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .UseIdentityByDefaultColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.0");
-
-            modelBuilder.Entity("DnsWatcher.Domain.Entities.Domains.RecordServerResult", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("CreatedBy")
-                        .HasMaxLength(512)
-                        .HasColumnType("character varying(512)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("DeletedBy")
-                        .HasMaxLength(512)
-                        .HasColumnType("character varying(512)");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid>("DnsServerId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("IpAddress")
-                        .HasMaxLength(512)
-                        .HasColumnType("character varying(512)");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasMaxLength(512)
-                        .HasColumnType("character varying(512)");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("TimeToLive")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("WatchedRecordId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DnsServerId");
-
-                    b.HasIndex("WatchedRecordId");
-
-                    b.ToTable("RecordServerResults");
-                });
 
             modelBuilder.Entity("DnsWatcher.Domain.Entities.Domains.WatchedDomain", b =>
                 {
@@ -138,10 +91,6 @@ namespace DnsWatcher.Persistence.Migrations
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Prefix")
-                        .HasMaxLength(512)
-                        .HasColumnType("character varying(512)");
 
                     b.Property<string>("RecordType")
                         .IsRequired()
@@ -256,25 +205,6 @@ namespace DnsWatcher.Persistence.Migrations
                     b.ToTable("DnsServers");
                 });
 
-            modelBuilder.Entity("DnsWatcher.Domain.Entities.Domains.RecordServerResult", b =>
-                {
-                    b.HasOne("DnsWatcher.Domain.Entities.Servers.DnsServer", "DnsServer")
-                        .WithMany()
-                        .HasForeignKey("DnsServerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DnsWatcher.Domain.Entities.Domains.WatchedRecord", "WatchedRecord")
-                        .WithMany("Results")
-                        .HasForeignKey("WatchedRecordId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DnsServer");
-
-                    b.Navigation("WatchedRecord");
-                });
-
             modelBuilder.Entity("DnsWatcher.Domain.Entities.Domains.WatchedRecord", b =>
                 {
                     b.HasOne("DnsWatcher.Domain.Entities.Domains.WatchedDomain", "WatchedDomain")
@@ -289,11 +219,6 @@ namespace DnsWatcher.Persistence.Migrations
             modelBuilder.Entity("DnsWatcher.Domain.Entities.Domains.WatchedDomain", b =>
                 {
                     b.Navigation("WatchedRecords");
-                });
-
-            modelBuilder.Entity("DnsWatcher.Domain.Entities.Domains.WatchedRecord", b =>
-                {
-                    b.Navigation("Results");
                 });
 #pragma warning restore 612, 618
         }
