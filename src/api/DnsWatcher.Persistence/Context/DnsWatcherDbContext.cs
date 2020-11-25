@@ -94,6 +94,7 @@ namespace DnsWatcher.Persistence.Context
 		public DbSet<DnsServer> DnsServers { get; set; }
 		public DbSet<WatchedDomain> WatchedDomains { get; set; }
 		public DbSet<WatchedRecord> WatchedRecords { get; set; }
+		public DbSet<RecordServerResult> RecordServerResults { get; set; }
 
 		#endregion
 	}

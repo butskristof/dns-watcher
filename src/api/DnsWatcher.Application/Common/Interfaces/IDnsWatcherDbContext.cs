@@ -14,6 +14,7 @@ namespace DnsWatcher.Application.Common.Interfaces
 		DbSet<WatchedDomain> WatchedDomains { get; set; }
 		DbSet<WatchedRecord> WatchedRecords { get; set; }
 		DbSet<DnsServer> DnsServers { get; set; }
+		DbSet<RecordServerResult> RecordServerResults { get; set; }
 
 		Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken());
 	}
