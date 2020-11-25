@@ -14,6 +14,7 @@ namespace DnsWatcher.Application.Contracts.Mappings
 			ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
 
 			CreateMap<CreateDnsServerData, DnsServer>();
+			CreateMap<UpdateDnsServerData, DnsServer>();
 		}
 
 		private void ApplyMappingsFromAssembly(Assembly assembly)

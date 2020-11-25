@@ -30,4 +30,9 @@ namespace DnsWatcher.Application.Contracts.Data.Servers.Validators
 		: DnsServerDataValidator<CreateDnsServerData>
 	{
 	}
+
+	public class UpdateDnsServerDataValidator
+		: DnsServerDataValidator<CreateDnsServerData>
+	{
+	}
 }

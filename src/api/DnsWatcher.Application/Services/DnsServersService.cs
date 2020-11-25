@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using AutoMapper;
 using DnsWatcher.Application.Common.Interfaces;
@@ -44,10 +43,15 @@ namespace DnsWatcher.Application.Services
 			};
 		}
 
+		private async Task<DnsServer> GetDnsServerAsync(Guid id)
+		{
+			return await _context.DnsServers
+				.FindAsync(id);
+		}
+
 		public async Task<DnsServerDto> GetDnsServerByIdAsync(Guid id)
 		{
-			var server = await _context.DnsServers
-				.FindAsync(id)
+			var server = await GetDnsServerAsync(id)
 				?? throw new NotFoundException($"No DnsServer found with id {id}.");
 			return _mapper.Map<DnsServerDto>(server);
 		}
@@ -60,6 +64,27 @@ namespace DnsWatcher.Application.Services
 			await _context.SaveChangesAsync();
 
 			return _mapper.Map<DnsServerDto>(server);
+		}
+
+		public async Task<DnsServerDto> UpdateDnsServerAsync(UpdateDnsServerData data)
+		{
+			var server = await GetDnsServerAsync(data.Id)
+				?? throw new NotFoundException($"No DnsServer found with id {data.Id}.");
+
+			_mapper.Map(data, server);
+			
+			await _context.SaveChangesAsync();
+
+			return _mapper.Map<DnsServerDto>(server);
+		}
+
+		public async Task DeleteDnsServerAsync(Guid id)
+		{
+			var server = await GetDnsServerAsync(id)
+				?? throw new NotFoundException($"No DnsServer found with id {id}.");
+
+			_context.DnsServers.Remove(server);
+			await _context.SaveChangesAsync();
 		}
 	}
 }
