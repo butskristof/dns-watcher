@@ -7,6 +7,7 @@ namespace DnsWatcher.Domain.Entities.Domains
 	public class WatchedRecord : EntityBase
 	{
 		public RecordType RecordType { get; set; }
+		public string Prefix { get; set; }
 		public string ExpectedIpAddress { get; set; }
 		public int ExpectedTimeToLive { get; set; }
 		

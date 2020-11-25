@@ -6,6 +6,7 @@ namespace DnsWatcher.Application.Contracts.Data.Domains
 	public abstract class WatchedRecordData
 	{
 		public RecordType RecordType { get; set; }
+		public string Prefix { get; set; }
 		public string ExpectedIpAddress { get; set; }
 		public int ExpectedTimeToLive { get; set; }
 	}

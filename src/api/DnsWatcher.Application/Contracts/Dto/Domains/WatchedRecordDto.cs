@@ -8,6 +8,7 @@ namespace DnsWatcher.Application.Contracts.Dto.Domains
 	public class WatchedRecordDto : EntityBaseDto, IMapFrom<WatchedRecord>
 	{
 		public RecordType RecordType { get; set; }
+		public string Prefix { get; set; }
 		public string ExpectedIpAddress { get; set; }
 		public int ExpectedTimeToLive { get; set; }
 
