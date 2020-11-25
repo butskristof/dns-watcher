@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace DnsWatcher.Application.Contracts.Data.Servers.Validators
 {
-	public class DnsServerDataValidator<T>
+	public abstract class DnsServerDataValidator<T>
 		: AbstractValidator<T>
 		where T : DnsServerData
 	{

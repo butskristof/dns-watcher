@@ -13,7 +13,7 @@ namespace DnsWatcher.API.Controllers
 	[Authorize]
 	[ApiController]
 	[Route("[controller]")]
-	public class DnsServersController
+	public class DnsServersController : ControllerBase
 	{
 		#region construction
 		

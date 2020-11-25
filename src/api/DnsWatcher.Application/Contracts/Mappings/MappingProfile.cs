@@ -2,7 +2,9 @@
 using System.Linq;
 using System.Reflection;
 using AutoMapper;
+using DnsWatcher.Application.Contracts.Data.Domains;
 using DnsWatcher.Application.Contracts.Data.Servers;
+using DnsWatcher.Domain.Entities.Domains;
 using DnsWatcher.Domain.Entities.Servers;
 
 namespace DnsWatcher.Application.Contracts.Mappings
@@ -15,6 +17,8 @@ namespace DnsWatcher.Application.Contracts.Mappings
 
 			CreateMap<CreateDnsServerData, DnsServer>();
 			CreateMap<UpdateDnsServerData, DnsServer>();
+			CreateMap<CreateWatchedDomainData, WatchedDomain>();
+			CreateMap<UpdateWatchedDomainData, WatchedDomain>();
 		}
 
 		private void ApplyMappingsFromAssembly(Assembly assembly)
