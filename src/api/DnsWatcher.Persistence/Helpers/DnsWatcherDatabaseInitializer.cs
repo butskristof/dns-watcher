@@ -8,13 +8,21 @@ namespace DnsWatcher.Persistence.Helpers
 {
 	public class DnsWatcherDatabaseInitializer : IDatabaseInitializer
 	{
+		public Task SeedAsync()
+		{
+			_logger.LogInformation("Starting database seed.");
+			_logger.LogInformation("Finished database seed.");
+			return Task.CompletedTask;
+		}
+
 		#region construction
+
 		private readonly DnsWatcherDbContext _context;
 		private readonly ILogger<DnsWatcherDatabaseInitializer> _logger;
 		private readonly IServiceProvider _serviceProvider;
 
-		public DnsWatcherDatabaseInitializer(DnsWatcherDbContext context, 
-			ILogger<DnsWatcherDatabaseInitializer> logger, 
+		public DnsWatcherDatabaseInitializer(DnsWatcherDbContext context,
+			ILogger<DnsWatcherDatabaseInitializer> logger,
 			IServiceProvider serviceProvider)
 		{
 			_context = context;
@@ -23,12 +31,5 @@ namespace DnsWatcher.Persistence.Helpers
 		}
 
 		#endregion
-
-		public Task Seed()
-		{
-			_logger.LogInformation("Starting database seed.");
-			_logger.LogInformation("Finished database seed.");
-			return Task.CompletedTask;
-		}
 	}
 }

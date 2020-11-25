@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnsWatcher.Infrastructure",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnsWatcher.Persistence", "DnsWatcher.Persistence\DnsWatcher.Persistence.csproj", "{ECF0D15E-C1C3-4393-8ABE-2388AAD0DCC1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnsWatcher.API", "DnsWatcher.API\DnsWatcher.API.csproj", "{580ACAF3-5ECA-4259-AFA9-EBD26D29C61F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,7 @@ Global
 		{1DBEDA29-75B6-438C-87E3-A83145D1005F} = {13E453A6-2E63-48F4-AA11-E36232084A49}
 		{B77E74FD-B903-426F-938D-21D9019B5A99} = {E324FC62-D7DB-4E1F-844D-14DF0EEE00DB}
 		{ECF0D15E-C1C3-4393-8ABE-2388AAD0DCC1} = {E324FC62-D7DB-4E1F-844D-14DF0EEE00DB}
+		{580ACAF3-5ECA-4259-AFA9-EBD26D29C61F} = {9B95BFB8-C602-4E45-9C9E-43C6D1E10602}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0D9664E1-F3DA-4697-A917-4CB7A9317687}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -51,5 +54,9 @@ Global
 		{ECF0D15E-C1C3-4393-8ABE-2388AAD0DCC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECF0D15E-C1C3-4393-8ABE-2388AAD0DCC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECF0D15E-C1C3-4393-8ABE-2388AAD0DCC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{580ACAF3-5ECA-4259-AFA9-EBD26D29C61F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{580ACAF3-5ECA-4259-AFA9-EBD26D29C61F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{580ACAF3-5ECA-4259-AFA9-EBD26D29C61F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{580ACAF3-5ECA-4259-AFA9-EBD26D29C61F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

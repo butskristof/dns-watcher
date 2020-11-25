@@ -4,6 +4,6 @@ namespace DnsWatcher.Persistence.Helpers.Interfaces
 {
 	public interface IDatabaseInitializer
 	{
-		Task Seed();
+		Task SeedAsync();
 	}
 }
