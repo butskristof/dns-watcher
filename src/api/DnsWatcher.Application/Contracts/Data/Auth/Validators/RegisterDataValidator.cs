@@ -1,9 +1,10 @@
-﻿using DnsWatcher.Common.Extensions;
+﻿using DnsWatcher.Common.Enumerations;
+using DnsWatcher.Common.Extensions;
 using FluentValidation;
 
 namespace DnsWatcher.Application.Contracts.Data.Auth.Validators
 {
-	internal class RegisterDataValidator : AbstractValidator<RegisterData>
+	public class RegisterDataValidator : AbstractValidator<RegisterData>
 	{
 		public RegisterDataValidator()
 		{
@@ -14,7 +15,8 @@ namespace DnsWatcher.Application.Contracts.Data.Auth.Validators
 			RuleFor(e => e.Password)
 				.Password();
 			RuleFor(e => e.ConfirmPassword)
-				.Equal(e => e.Password);
+				.Equal(e => e.Password)
+				.WithErrorCode(ErrorCode.PasswordsDontMatch);
 		}
 	}
 }

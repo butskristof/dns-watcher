@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using DnsWatcher.API.Middlewares;
 using DnsWatcher.Application;
+using DnsWatcher.Application.Contracts.Data.Auth;
 using DnsWatcher.Application.Services.Interfaces;
 using DnsWatcher.Common;
 using DnsWatcher.Common.Configuration;
@@ -58,6 +59,7 @@ namespace DnsWatcher.API
 			);
 
 			app.UseHttpsRedirection();
+			app.UseAuthentication();
 			app.UseRouting();
 			app.UseAuthorization();
 			app.UseMiddleware(typeof(ErrorHandlingMiddleware));

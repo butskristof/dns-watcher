@@ -8,6 +8,7 @@
 		IdsDontMatch,
 		DataChanged,
 		InvalidDomainName,
-		InvalidIpAddress
+		InvalidIpAddress,
+		PasswordsDontMatch
 	}
 }

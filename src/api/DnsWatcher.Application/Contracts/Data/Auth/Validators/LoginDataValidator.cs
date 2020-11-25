@@ -2,7 +2,7 @@
 
 namespace DnsWatcher.Application.Contracts.Data.Auth.Validators
 {
-	internal class LoginDataValidator : AbstractValidator<LoginData>
+	public class LoginDataValidator : AbstractValidator<LoginData>
 	{
 		public LoginDataValidator()
 		{
