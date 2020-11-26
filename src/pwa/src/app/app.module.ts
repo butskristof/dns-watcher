@@ -9,6 +9,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {Config} from './config';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {AuthModule} from './auth/auth.module';
 
 registerLocaleData(localeEnBe);
 
@@ -27,6 +28,7 @@ registerLocaleData(localeEnBe);
         deps: [HttpClient]
       }
     }),
+    AuthModule
   ],
   providers: [
     {
