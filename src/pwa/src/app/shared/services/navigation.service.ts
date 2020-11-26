@@ -36,7 +36,7 @@ export class NavigationService {
 
   // endregion
 
-  goToUrl(returnUrl: string | null = null): Promise<boolean> {
-    return this.router.navigate([`/${returnUrl}`]);
+  goToUrl(url: string | null = null): Promise<boolean> {
+    return this.router.navigate([`/${url}`]);
   }
 }

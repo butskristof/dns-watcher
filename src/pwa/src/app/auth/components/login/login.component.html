@@ -38,6 +38,13 @@
     >login.remember</label>
   </div>
 
+  <div
+    *ngIf="error"
+    class="error"
+  >
+    <p [textContent]="error"></p>
+  </div>
+
   <button
     type="submit"
     [disabled]="form?.valid != true"

@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
           if (result) {
             this.navigationService.goToUrl(this.returnUrl);
           }
-        }, error => this.error = 'error...');
+        }, error => this.error = error.message);
     }
   }
   // endregion
