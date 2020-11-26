@@ -9,9 +9,10 @@ import { DomainComponent } from './components/domains/domain/domain.component';
 import {TranslateModule} from '@ngx-translate/core';
 import { RecordPageComponent } from './pages/records/record-page/record-page.component';
 import { RecordComponent } from './components/records/record/record.component';
+import { DnsServersListComponent } from './components/dns-servers/dns-servers-list/dns-servers-list.component';
 
 @NgModule({
-  declarations: [DashboardComponent, DashboardPageComponent, DomainsListComponent, DomainPageComponent, DomainComponent, RecordPageComponent, RecordComponent],
+  declarations: [DashboardComponent, DashboardPageComponent, DomainsListComponent, DomainPageComponent, DomainComponent, RecordPageComponent, RecordComponent, DnsServersListComponent],
   imports: [
     CommonModule,
     MainRoutingModule,

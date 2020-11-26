@@ -4,17 +4,14 @@
     "update": "Update",
     "updating": "Updating"
   },
-  "dashboard": {
-    "domains": "Domains",
-    "dns-servers": "DNS servers"
-  },
   "login": {
     "username": "Username",
     "password": "Password",
     "remember": "Remember me",
     "submit": "Log in"
   },
-  "domain": {
+  "domains": {
+    "title": "Domains",
     "back-domains": "Back to domains",
     "domain-name": "Domain name",
     "record-results": "Results"
@@ -34,5 +31,8 @@
     "ok": "OK",
     "nok": "not OK",
     "age": "updated"
+  },
+  "dns-servers": {
+    "title": "DNS servers"
   }
 }

@@ -20,6 +20,6 @@ export class Result {
   get prettyServer(): string {
     return this.dnsServer == null
       ? ''
-      : `${this.dnsServer.name} (${this.dnsServer.ipAddress}:${this.dnsServer.port})`;
+      : this.dnsServer.pretty;
   }
 }
