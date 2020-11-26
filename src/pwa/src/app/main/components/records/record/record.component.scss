@@ -1,0 +1,29 @@
+table {
+  border: 1px solid black;
+  border-collapse: collapse;
+
+  th, td {
+    border: 1px solid black;
+  }
+}
+
+.ok {
+  background-color: lightgreen;
+}
+
+.nok {
+  background-color: lightcoral;
+}
+
+
+.update-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-bottom: 1rem;
+
+  button {
+    margin-right: 1rem;
+  }
+}

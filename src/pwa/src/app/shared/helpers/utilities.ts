@@ -1,5 +1,5 @@
 const utilities = {
-  isNullOrWhitespace: (input: string) => {
+  isNullOrWhitespace: (input: string | null | undefined) => {
     return !input || !input.trim();
   },
   addQueryParamToUrl: (url: string, key: string, value: string) => {

@@ -1,11 +1,34 @@
 {
   "common": {
-    "app-name": "DNS watcher"
+    "app-name": "DNS watcher",
+    "update": "Update",
+    "updating": "Updating"
   },
   "login": {
     "username": "Username",
     "password": "Password",
     "remember": "Remember me",
     "submit": "Log in"
+  },
+  "domain": {
+    "back-domains": "Back to domains",
+    "domain-name": "Domain name",
+    "record-results": "Results"
+  },
+  "records": {
+    "back-domain": "Back to domain",
+    "type": "Record type",
+    "hostname": "Hostname",
+    "expected-value": "Expected value",
+    "expected-ttl": "Expected TTL"
+  },
+  "results": {
+    "value": "Value",
+    "ttl": "Time to live",
+    "server": "Server",
+    "matches": "matches",
+    "ok": "OK",
+    "nok": "not OK",
+    "age": "updated"
   }
 }

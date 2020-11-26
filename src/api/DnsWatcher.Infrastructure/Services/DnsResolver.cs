@@ -76,7 +76,7 @@ namespace DnsWatcher.Infrastructure.Services
 
 			if (result != null)
 			{
-				res.TimeToLive = result.TimeToLive;
+				res.TimeToLive = result.InitialTimeToLive;
 				if (result is ARecord a)
 				{
 					res.Value = a.Address.ToString();

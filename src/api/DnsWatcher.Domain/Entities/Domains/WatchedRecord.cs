@@ -9,7 +9,7 @@ namespace DnsWatcher.Domain.Entities.Domains
 	{
 		public RecordType RecordType { get; set; }
 		public string Prefix { get; set; }
-		public string ExpectedIpAddress { get; set; }
+		public string ExpectedValue { get; set; }
 		public int ExpectedTimeToLive { get; set; }
 		
 		public Guid WatchedDomainId { get; set; }

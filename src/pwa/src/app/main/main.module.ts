@@ -3,12 +3,19 @@ import { CommonModule } from '@angular/common';
 import {MainRoutingModule} from './main-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
+import { DomainsListComponent } from './components/domains/domains-list/domains-list.component';
+import { DomainPageComponent } from './pages/domains/domain-page/domain-page.component';
+import { DomainComponent } from './components/domains/domain/domain.component';
+import {TranslateModule} from '@ngx-translate/core';
+import { RecordPageComponent } from './pages/records/record-page/record-page.component';
+import { RecordComponent } from './components/records/record/record.component';
 
 @NgModule({
-  declarations: [DashboardComponent, DashboardPageComponent],
+  declarations: [DashboardComponent, DashboardPageComponent, DomainsListComponent, DomainPageComponent, DomainComponent, RecordPageComponent, RecordComponent],
   imports: [
     CommonModule,
-    MainRoutingModule
+    MainRoutingModule,
+    TranslateModule
   ]
 })
 export class MainModule { }

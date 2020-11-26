@@ -12,7 +12,7 @@ namespace DnsWatcher.Domain.Entities.Domains
 		public Guid DnsServerId { get; set; }
 		public DnsServer DnsServer { get; set; }
 
-		public string IpAddress { get; set; }
+		public string Value { get; set; }
 		public int TimeToLive { get; set; }
 	}
 }
