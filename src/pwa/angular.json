@@ -49,7 +49,7 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "src/styles",
-                "./node_modules/milligram/dist"
+                "./node_modules/milligram-scss/dist"
               ]
             },
             "scripts": []
@@ -118,7 +118,7 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "src/styles",
-                "./node_modules/milligram/dist"
+                "./node_modules/milligram-scss/dist"
               ]
             },
             "scripts": []
