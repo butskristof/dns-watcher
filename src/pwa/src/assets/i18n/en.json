@@ -7,5 +7,9 @@
     "password": "Password",
     "remember": "Remember me",
     "submit": "Log in"
+  },
+  "domain": {
+    "back-domains": "Back to domains",
+    "domain-name": "Domain name"
   }
 }

@@ -39,4 +39,12 @@ export class NavigationService {
   goToUrl(url: string | null = null): Promise<boolean> {
     return this.router.navigate([`/${url}`]);
   }
+
+  getDomainDetailsLink(id: string): string {
+    return `/domains/${id}`;
+  }
+
+  getDashboardLink(): string {
+    return `/dashboard`;
+  }
 }

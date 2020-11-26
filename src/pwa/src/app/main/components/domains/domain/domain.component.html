@@ -1,0 +1,28 @@
+<ng-container
+  *ngIf="domain != null"
+>
+  <h2 translate>Domain name</h2>
+  <p [textContent]="domain.domainName"></p>
+
+  <h2 translate>Watched records</h2>
+  <table>
+    <thead>
+    <tr>
+      <th translate>records.type</th>
+      <th translate>records.hostname</th>
+      <th translate>records.expected-value</th>
+      <th translate>records.expected-ttl</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr
+      *ngFor="let record of domain.watchedRecords"
+    >
+      <td [textContent]="recordType[record.recordType]"></td>
+      <td [textContent]="getHostname(record)"></td>
+      <td [textContent]="record.expectedValue"></td>
+      <td [textContent]="record.expectedTimeToLive"></td>
+    </tr>
+    </tbody>
+  </table>
+</ng-container>
