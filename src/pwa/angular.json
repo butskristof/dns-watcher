@@ -46,6 +46,12 @@
             "styles": [
               "src/styles/main.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles",
+                "./node_modules/milligram/dist"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -109,6 +115,12 @@
             "styles": [
               "src/styles/main.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles",
+                "./node_modules/milligram/dist"
+              ]
+            },
             "scripts": []
           }
         },
