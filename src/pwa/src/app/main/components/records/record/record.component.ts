@@ -6,6 +6,7 @@ import {Domain} from '../../../models/entities/domains/domain';
 import utilities from '../../../../shared/helpers/utilities';
 import {DomainsService} from '../../../services/domains.service';
 import {Result} from '../../../models/entities/domains/result';
+import {Config} from '../../../../config';
 
 @Component({
   selector: 'app-record',
@@ -94,6 +95,14 @@ export class RecordComponent
 
   matchesTtl(result: Result): boolean {
     return result.timeToLive === this.record?.expectedTimeToLive;
+  }
+
+  getFormattedDate(result: Result): string {
+    return 'hello';
+  }
+
+  get dateFormat(): string {
+    return Config.defaultDateFormat;
   }
 
   // endregion

@@ -5,6 +5,7 @@ import {Record} from '../../../models/entities/domains/record';
 import utilities from '../../../../shared/helpers/utilities';
 import {RecordType} from '../../../models/entities/domains/record-type';
 import {NavigationService} from '../../../../shared/services/navigation.service';
+import {Config} from '../../../../config';
 
 @Component({
   selector: 'app-domain',

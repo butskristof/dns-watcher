@@ -2,7 +2,7 @@
   *ngIf="record != null"
 >
   <h2 translate>records.type</h2>
-  <p [textContent]="recordType[record.recordType]"></p>
+  <p [textContent]="recordType[record.recordType!]"></p>
 
   <h2 translate>records.hostname</h2>
   <p [textContent]="getHostname()"></p>
@@ -37,6 +37,7 @@
       <th translate>results.value</th>
       <th translate>results.ttl</th>
       <th translate>results.server</th>
+      <th translate>results.age</th>
     </tr>
     </thead>
     <tbody>
@@ -54,6 +55,7 @@
         [class.nok]="!matchesTtl(result)"
       ></td>
       <td [textContent]="result.prettyServer"></td>
+      <td [textContent]="result.modifiedOn | date:dateFormat "></td>
     </tr>
     </tbody>
   </table>

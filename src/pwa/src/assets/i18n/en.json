@@ -28,6 +28,7 @@
     "server": "Server",
     "matches": "matches",
     "ok": "OK",
-    "nok": "not OK"
+    "nok": "not OK",
+    "age": "updated"
   }
 }

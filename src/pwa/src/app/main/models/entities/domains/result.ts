@@ -1,6 +1,8 @@
 import {DnsServer} from '../servers/dns-server';
 
 export class Result {
+  modifiedOn?: Date;
+
   value?: string;
   timeToLive?: number;
   dnsServer?: DnsServer;

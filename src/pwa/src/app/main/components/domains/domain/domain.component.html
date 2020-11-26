@@ -19,7 +19,7 @@
     <tr
       *ngFor="let record of domain.watchedRecords"
     >
-      <td [textContent]="recordType[record.recordType]"></td>
+      <td [textContent]="recordType[record.recordType!]"></td>
       <td [textContent]="getHostname(record)"></td>
       <td [textContent]="record.expectedValue"></td>
       <td [textContent]="record.expectedTimeToLive"></td>
