@@ -1,0 +1,11 @@
+{
+  "common": {
+    "app-name": "DNS watcher"
+  },
+  "login": {
+    "username": "Username",
+    "password": "Password",
+    "remember": "Remember me",
+    "submit": "Log in"
+  }
+}
