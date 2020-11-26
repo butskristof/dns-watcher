@@ -1,9 +1,9 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Domain} from '../../../models/entities/domain';
+import {Domain} from '../../../models/entities/domains/domain';
 import {DomainsService} from '../../../services/domains.service';
-import {Record} from '../../../models/entities/record';
+import {Record} from '../../../models/entities/domains/record';
 import utilities from '../../../../shared/helpers/utilities';
-import {RecordType} from '../../../models/entities/record-type';
+import {RecordType} from '../../../models/entities/domains/record-type';
 import {NavigationService} from '../../../../shared/services/navigation.service';
 
 @Component({

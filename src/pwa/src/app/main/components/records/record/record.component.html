@@ -1,0 +1,51 @@
+<ng-container
+  *ngIf="record != null"
+>
+  <h2 translate>records.type</h2>
+  <p [textContent]="recordType[record.recordType]"></p>
+
+  <h2 translate>records.hostname</h2>
+  <p [textContent]="getHostname()"></p>
+
+  <h2 translate>records.expected-value</h2>
+  <p [textContent]="record.expectedValue"></p>
+
+  <h2 translate>records.expected-ttl</h2>
+  <p [textContent]="record.expectedTimeToLive"></p>
+
+  <table>
+    <thead>
+    <tr>
+      <th translate>results.value</th>
+      <th translate>results.ttl</th>
+      <th translate>results.server</th>
+      <th translate>results.matches</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr
+      *ngFor="let result of record.results"
+    >
+      <td [textContent]="result.value"></td>
+      <td [textContent]="result.timeToLive"></td>
+      <td [textContent]="result.prettyServer"></td>
+      <td
+        *ngIf="matches(result)"
+        class="ok"
+      >
+        <span translate>
+          results.ok
+        </span>
+      </td>
+      <td
+        *ngIf="!matches(result)"
+        class="nok"
+      >
+        <span translate>
+          results.nok
+        </span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</ng-container>

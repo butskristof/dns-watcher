@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Domain} from '../../../models/entities/domain';
+import {Domain} from '../../../models/entities/domains/domain';
 import {DomainsService} from '../../../services/domains.service';
 import {NavigationService} from '../../../../shared/services/navigation.service';
 

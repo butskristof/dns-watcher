@@ -12,5 +12,20 @@
     "back-domains": "Back to domains",
     "domain-name": "Domain name",
     "record-results": "Results"
+  },
+  "records": {
+    "back-domain": "Back to domain",
+    "type": "Record type",
+    "hostname": "Hostname",
+    "expected-value": "Expected value",
+    "expected-ttl": "Expected TTL"
+  },
+  "results": {
+    "value": "Value",
+    "ttl": "Time to live",
+    "server": "Server",
+    "matches": "matches",
+    "ok": "OK",
+    "nok": "not OK"
   }
 }

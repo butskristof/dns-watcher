@@ -1,22 +1,23 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {NavigationService} from '../../../../shared/services/navigation.service';
 import {Subscription} from 'rxjs';
+import {NavigationService} from '../../../../shared/services/navigation.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-domain-page',
-  templateUrl: './domain-page.component.html',
-  styleUrls: ['./domain-page.component.scss']
+  selector: 'app-record-page',
+  templateUrl: './record-page.component.html',
+  styleUrls: ['./record-page.component.scss']
 })
-export class DomainPageComponent
+export class RecordPageComponent
   implements OnInit, OnDestroy
 {
   private subParams?: Subscription;
   domainId: string | null = null;
+  recordId: string | null = null;
 
   constructor(
     private readonly navigationService: NavigationService,
-    private readonly route: ActivatedRoute,
+    private readonly route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -32,7 +33,8 @@ export class DomainPageComponent
     this.subParams = this.route
       .paramMap
       .subscribe(params => {
-        this.domainId = params.get('id');
+        this.domainId = params.get('domainId');
+        this.recordId = params.get('recordId');
       });
   }
 
@@ -43,7 +45,10 @@ export class DomainPageComponent
 
   // region getters
   get backLink(): string {
-    return this.navigationService.getDashboardLink();
+    if (this.domainId == null) {
+      return '';
+    }
+    return this.navigationService.getDomainDetailsLink(this.domainId);
   }
   // endregion
 }

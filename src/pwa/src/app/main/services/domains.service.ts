@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Domains} from '../models/entities/domains';
+import {Domains} from '../models/entities/domains/domains';
 import {Config} from '../../config';
 import {map} from 'rxjs/operators';
-import {Domain} from '../models/entities/domain';
+import {Domain} from '../models/entities/domains/domain';
 
 @Injectable({
   providedIn: 'root'
