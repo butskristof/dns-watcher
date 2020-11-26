@@ -10,7 +10,7 @@ namespace DnsWatcher.Application.Contracts.Dto.Domains
 	{
 		public RecordType RecordType { get; set; }
 		public string Prefix { get; set; }
-		public string ExpectedIpAddress { get; set; }
+		public string ExpectedValue { get; set; }
 		public int ExpectedTimeToLive { get; set; }
 
 		public ICollection<RecordServerResultDto> Results { get; set; }

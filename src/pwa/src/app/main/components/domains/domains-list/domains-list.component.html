@@ -1,0 +1,10 @@
+<ul>
+  <li
+    *ngFor="let domain of domains"
+  >
+    <a
+      [textContent]="domain.domainName"
+      [routerLink]="getDomainDetailsLink(domain)"
+    ></a>
+  </li>
+</ul>

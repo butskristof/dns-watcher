@@ -20,7 +20,6 @@ export class ExternalAuthService {
 
   authenticate(username: string, password: string): Observable<TokenInfo> {
     const url = `${Config.apiUrl}/auth/authenticate`;
-    console.log(url);
     const body = new LoginData(username, password);
     return this.http
       .post<TokenInfo>(url, body, httpOptions)
