@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {Languages} from './shared/models/app/languages';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'dns-watcher';
+  constructor(
+    private readonly translator: TranslateService
+  ) {
+    translator.setDefaultLang(Languages.EN);
+  }
 }
