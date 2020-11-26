@@ -1,6 +1,8 @@
 {
   "common": {
-    "app-name": "DNS watcher"
+    "app-name": "DNS watcher",
+    "update": "Update",
+    "updating": "Updating"
   },
   "login": {
     "username": "Username",

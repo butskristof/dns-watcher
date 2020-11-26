@@ -13,6 +13,24 @@
   <h2 translate>records.expected-ttl</h2>
   <p [textContent]="record.expectedTimeToLive"></p>
 
+  <div class="update-row">
+    <button
+      type="button"
+      (click)="updateResults()"
+      translate
+    >
+      common.update
+    </button>
+    <div
+      *ngIf="updating"
+    >
+    <span
+      translate
+    >common.updating</span>...
+    </div>
+  </div>
+
+
   <table>
     <thead>
     <tr>

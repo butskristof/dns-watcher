@@ -14,3 +14,16 @@ table {
 .nok {
   background-color: red;
 }
+
+
+.update-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-bottom: 1rem;
+
+  button {
+    margin-right: 1rem;
+  }
+}

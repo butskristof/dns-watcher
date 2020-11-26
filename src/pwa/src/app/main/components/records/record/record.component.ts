@@ -24,6 +24,8 @@ export class RecordComponent
   domain: Domain | null = null;
   recordType = RecordType;
 
+  updating = false;
+
   constructor(
     private readonly recordsService: RecordsService,
     private readonly domainsService: DomainsService,
@@ -37,6 +39,21 @@ export class RecordComponent
       this.loadRecord();
     }
   }
+
+  // region actions
+  updateResults(): void {
+    if (this.domainId == null || this.recordId == null) {
+      this.record = null;
+      return;
+    }
+
+    this.updating = true;
+    this.recordsService
+      .updateResults(this.domainId, this.recordId)
+      .subscribe(() => this.loadRecord())
+      .add(() => this.updating = false);
+  }
+  // endregion
 
   // region fetch data
   private loadRecord(): void {

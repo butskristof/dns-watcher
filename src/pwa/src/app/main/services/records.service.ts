@@ -21,4 +21,11 @@ export class RecordsService {
       .get<Record>(url)
       .pipe(map(e => new Record(e)));
   }
+
+  updateResults(domainId: string, recordId: string): Observable<Record> {
+    const url = `${this.baseUrl}/${domainId}/records/${recordId}/update`;
+    return this.http
+      .post<Record>(url, {})
+      .pipe(map(e => new Record(e)));
+  }
 }
