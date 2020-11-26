@@ -6,7 +6,7 @@ namespace DnsWatcher.Application.Contracts.Dto.Domains
 {
 	public class RecordServerResultDto : EntityBaseDto, IMapFrom<RecordServerResult>
 	{
-		public string IpAddress { get; set; }
+		public string Value { get; set; }
 		public int TimeToLive { get; set; }
 		public DnsServerDto DnsServer { get; set; }
 	}

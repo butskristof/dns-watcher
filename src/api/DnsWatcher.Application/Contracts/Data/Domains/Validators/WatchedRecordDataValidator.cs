@@ -9,7 +9,7 @@ namespace DnsWatcher.Application.Contracts.Data.Domains.Validators
 	{
 		public WatchedRecordDataValidator()
 		{
-			RuleFor(e => e.ExpectedIpAddress)
+			RuleFor(e => e.ExpectedValue)
 				.Cascade(CascadeMode.Stop)
 				.IpAddress();
 			
