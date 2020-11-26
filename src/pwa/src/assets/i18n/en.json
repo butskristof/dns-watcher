@@ -2,6 +2,10 @@
   "common": {
     "app-name": "DNS watcher"
   },
+  "dashboard": {
+    "domains": "Domains",
+    "dns-servers": "DNS servers"
+  },
   "login": {
     "username": "Username",
     "password": "Password",
