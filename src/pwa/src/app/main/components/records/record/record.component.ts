@@ -94,15 +94,15 @@ export class RecordComponent
   }
 
   matchesTtl(result: Result): boolean {
-    return result.timeToLive === this.record?.expectedTimeToLive;
-  }
+    if (result?.timeToLive == null) {
+      return false;
+    }
 
-  getFormattedDate(result: Result): string {
-    return 'hello';
+    return result.timeToLive > 0 && result.timeToLive <= (this.record?.expectedTimeToLive ?? -1);
   }
 
   get dateFormat(): string {
-    return Config.defaultDateFormat;
+    return Config.defaultDateFormat + ':ss';
   }
 
   // endregion
