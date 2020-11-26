@@ -10,6 +10,7 @@
   },
   "domain": {
     "back-domains": "Back to domains",
-    "domain-name": "Domain name"
+    "domain-name": "Domain name",
+    "record-results": "Results"
   }
 }

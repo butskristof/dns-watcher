@@ -47,4 +47,8 @@ export class NavigationService {
   getDashboardLink(): string {
     return `/dashboard`;
   }
+
+  getRecordDetailsLink(domainId: string, id: string): string {
+    return `/domains/${domainId}/records/${id}`;
+  }
 }

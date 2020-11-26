@@ -12,6 +12,7 @@
       <th translate>records.hostname</th>
       <th translate>records.expected-value</th>
       <th translate>records.expected-ttl</th>
+      <th>&nbsp;</th>
     </tr>
     </thead>
     <tbody>
@@ -22,6 +23,12 @@
       <td [textContent]="getHostname(record)"></td>
       <td [textContent]="record.expectedValue"></td>
       <td [textContent]="record.expectedTimeToLive"></td>
+      <td>
+        <a
+          [routerLink]="getRecordDetailsLink(record)"
+          translate
+        >domain.record-results</a>
+      </td>
     </tr>
     </tbody>
   </table>

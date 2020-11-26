@@ -4,6 +4,7 @@ import {DomainsService} from '../../../services/domains.service';
 import {Record} from '../../../models/entities/record';
 import utilities from '../../../../shared/helpers/utilities';
 import {RecordType} from '../../../models/entities/record-type';
+import {NavigationService} from '../../../../shared/services/navigation.service';
 
 @Component({
   selector: 'app-domain',
@@ -20,7 +21,8 @@ export class DomainComponent
   recordType = RecordType;
 
   constructor(
-    private readonly domainsService: DomainsService
+    private readonly domainsService: DomainsService,
+    private readonly navigationService: NavigationService
   ) {
   }
 
@@ -62,4 +64,10 @@ export class DomainComponent
   }
 
   // endregion
+  getRecordDetailsLink(record: Record): string {
+    if (this.domainId == null || record?.id == null) {
+      return '';
+    }
+    return this.navigationService.getRecordDetailsLink(this.domainId, record.id);
+  }
 }
