@@ -88,9 +88,12 @@ export class RecordComponent
       : `${this.record.prefix}.${this.domain?.domainName}`;
   }
 
-  matches(result: Result): boolean {
-    return result.value === this.record?.expectedValue
-      && result.timeToLive === this.record?.expectedTimeToLive;
+  matchesValue(result: Result): boolean {
+    return result.value === this.record?.expectedValue;
+  }
+
+  matchesTtl(result: Result): boolean {
+    return result.timeToLive === this.record?.expectedTimeToLive;
   }
 
   // endregion
