@@ -5,6 +5,7 @@ import {ActionButtonStyle} from '../../../../shared/models/viewmodels/action-but
 import {DialogService} from '../../../../dialog/services/dialog.service';
 import {ExampleComponent} from '../../../../dialog/components/example/example.component';
 import {ConfirmDialogComponent} from '../../../../dialog/components/confirm-dialog/confirm-dialog.component';
+import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-dns-servers-list',
@@ -37,25 +38,30 @@ export class DnsServersListComponent implements OnInit {
   // region actions
 
   edit(server?: DnsServer): void {
-    console.log(`edit ${server?.name}`);
-    const ref = this.dialogService.open(ConfirmDialogComponent, {
-      data: {
-        message: 'dns-servers.delete.message',
-        content: server?.pretty,
-        style: 'danger'
-      }
-    });
-
-    ref.afterClosed
-      .subscribe(result => console.log(result));
   }
 
   promptDeleteServer(server: DnsServer): void {
-    console.log('delete');
+    const ref = this.dialogService
+      .confirm('dns-servers.delete.message',
+        server.pretty,
+        'danger');
+
+    ref.afterClosed
+      .subscribe(result => {
+        if (result === true) {
+          this.deleteServer(server.id);
+        }
+      });
   }
 
-  private deleteServer(id: string): void {
+  private deleteServer(id?: string): void {
+    if (id == null) {
+      return;
+    }
 
+    this.serversService
+      .deleteDnsServer(id)
+      .subscribe(() => this.loadServers());
   }
   // endregion
 }

@@ -7,6 +7,7 @@ import {DialogModule} from '../dialog.module';
 import {DialogConfig} from '../models/dialog-config';
 import {DialogInjector} from '../injectors/dialog-injector';
 import {DialogRef} from '../models/dialog-ref';
+import {ConfirmDialogComponent} from '../components/confirm-dialog/confirm-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,19 @@ export class DialogService {
   ) {
   }
 
+  public confirm(
+    message: string,
+    content?: string,
+    style?: string)
+  : DialogRef
+  {
+    return this.open(
+      ConfirmDialogComponent, {
+        data: { message, content, style }
+      }
+    );
+  }
+
   public open(
     componentType: Type<any>,
     config: DialogConfig
@@ -33,6 +47,8 @@ export class DialogService {
 
     return ref;
   }
+
+  // region internals
 
   private appendDialogComponentToBody(config: DialogConfig): DialogRef {
     const map = new WeakMap();
@@ -79,4 +95,6 @@ export class DialogService {
     this.appRef.detachView(this.dialogComponentRef.hostView);
     this.dialogComponentRef.destroy();
   }
+
+  // endregion
 }

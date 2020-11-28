@@ -20,4 +20,10 @@ export class DnsServersService {
       .get<DnsServers>(this.baseUrl)
       .pipe(map(e => new DnsServers(e)));
   }
+
+  deleteDnsServer(id: string): Observable<boolean> {
+    const url = `${this.baseUrl}/${id}`;
+    return this.http
+      .delete<boolean>(url);
+  }
 }
