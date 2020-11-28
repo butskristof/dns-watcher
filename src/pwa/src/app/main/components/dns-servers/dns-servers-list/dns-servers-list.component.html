@@ -1,7 +1,17 @@
-<h2 translate>dns-servers.title</h2>
-<ul>
-  <li
+<h3 translate>dns-servers.title</h3>
+
+<div class="list">
+  <div class="list-item"
     *ngFor="let server of servers"
-    [textContent]="server.pretty"
-  ></li>
-</ul>
+  >
+    <div class="content">
+      <strong [textContent]="server.name"></strong>
+      <div>
+        {{ server.ipAddress }}:{{server.port}}
+      </div>
+    </div>
+    <div class="actions">
+      x
+    </div>
+  </div>
+</div>
