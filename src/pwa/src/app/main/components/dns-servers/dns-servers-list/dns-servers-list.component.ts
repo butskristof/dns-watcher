@@ -26,7 +26,6 @@ export class DnsServersListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadServers();
-    this.notifier.showSuccessToast('hello');
   }
 
   // region fetch data
@@ -63,7 +62,10 @@ export class DnsServersListComponent implements OnInit {
 
     this.serversService
       .deleteDnsServer(id)
-      .subscribe(() => this.loadServers());
+      .subscribe(() => {
+        this.notifier.showSuccessToast('dns-servers.delete.deleted', true);
+        this.loadServers();
+      });
   }
   // endregion
 }

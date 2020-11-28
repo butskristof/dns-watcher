@@ -38,7 +38,8 @@
   "dns-servers": {
     "title": "DNS servers",
     "delete": {
-      "message": "Delete DNS server?"
+      "message": "Delete DNS server?",
+      "deleted": "DNS server was deleted."
     }
   },
   "errors": {
