@@ -6,7 +6,7 @@ import {
   ComponentRef,
   ViewChild,
   ComponentFactoryResolver,
-  ChangeDetectorRef
+  ChangeDetectorRef, HostListener
 } from '@angular/core';
 import {Subject} from 'rxjs';
 import {InsertionDirective} from '../../directives/insertion.directive';
@@ -56,12 +56,25 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
   // region clicks
 
   onOverlayClicked(event: MouseEvent): void {
-    // close the dialog
+    this.close();
   }
 
   onDialogClicked(event: MouseEvent): void {
     event.stopPropagation();
   }
 
+  // endregion
+
+  // region escape
+  @HostListener('document:keydown.escape', ['$event'])
+  private onKeydownHandler(event: KeyboardEvent): void {
+    this.close();
+  }
+  // endregion
+
+  // region close
+  private close(): void {
+    this.innerOnClose.next(null);
+  }
   // endregion
 }

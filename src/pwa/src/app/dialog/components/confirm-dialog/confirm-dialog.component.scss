@@ -1,0 +1,11 @@
+.actions {
+  text-align: right;
+
+  :not(:first-child) {
+    margin-left: 0.5rem;
+  }
+
+  button {
+    margin-bottom: 0;
+  }
+}

@@ -12,7 +12,7 @@ import {DialogRef} from '../models/dialog-ref';
   providedIn: 'root'
 })
 export class DialogService {
-  dialogComponentRef?: ComponentRef<DialogComponent>;
+  private dialogComponentRef?: ComponentRef<DialogComponent>;
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,

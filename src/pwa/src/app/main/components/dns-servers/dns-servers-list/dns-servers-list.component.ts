@@ -4,7 +4,7 @@ import {DnsServersService} from '../../../services/dns-servers.service';
 import {ActionButtonStyle} from '../../../../shared/models/viewmodels/action-button-style';
 import {DialogService} from '../../../../dialog/services/dialog.service';
 import {ExampleComponent} from '../../../../dialog/components/example/example.component';
-import {log} from 'util';
+import {ConfirmDialogComponent} from '../../../../dialog/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-dns-servers-list',
@@ -23,6 +23,7 @@ export class DnsServersListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadServers();
+    this.edit();
   }
 
   // region fetch data
@@ -35,11 +36,12 @@ export class DnsServersListComponent implements OnInit {
 
   // region actions
 
-  edit(server: DnsServer | null = null): void {
+  edit(server?: DnsServer): void {
     console.log(`edit ${server?.name}`);
-    const ref = this.dialogService.open(ExampleComponent, {
+    const ref = this.dialogService.open(ConfirmDialogComponent, {
       data: {
-        message: 'I am dynamic.'
+        message: 'dns-servers.delete.message',
+        content: server?.pretty
       }
     });
 

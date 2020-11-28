@@ -2,7 +2,9 @@
   "common": {
     "app-name": "DNS watcher",
     "update": "Update",
-    "updating": "Updating"
+    "updating": "Updating",
+    "cancel": "Cancel",
+    "ok": "OK"
   },
   "login": {
     "username": "Username",
@@ -34,6 +36,9 @@
     "age": "updated"
   },
   "dns-servers": {
-    "title": "DNS servers"
+    "title": "DNS servers",
+    "delete": {
+      "message": "Delete DNS server?"
+    }
   }
 }

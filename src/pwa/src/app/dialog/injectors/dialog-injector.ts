@@ -11,7 +11,9 @@ export class DialogInjector implements Injector {
     notFoundValue?: T,
     flags?: InjectFlags
   ): T;
+
   get(token: any, notFoundValue?: any): any;
+
   get(token: any, notFoundValue?: any, flags?: any): any {
     const value = this.additionalTokens.get(token);
 

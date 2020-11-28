@@ -1,3 +1,3 @@
-export class DialogConfig<D = any> {
-  data?: D;
+export class DialogConfig<T = any> {
+  data?: T;
 }
