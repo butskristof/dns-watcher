@@ -5,7 +5,8 @@
     "updating": "Updating",
     "cancel": "Cancel",
     "ok": "OK",
-    "save": "Save"
+    "save": "Save",
+    "saved": "Changes were saved."
   },
   "login": {
     "username": "Username",
@@ -45,11 +46,6 @@
     "edit": {
       "title-edit": "Edit DNS server",
       "title-create": "Create DNS server",
-      "fields": {
-        "name": "Name",
-        "ip-address": "IP address",
-        "port": "Port"
-      },
       "placeholders": {
         "name": "Cloudflare",
         "ip-address": "1.1.1.1",
@@ -57,11 +53,17 @@
       }
     }
   },
+  "fields": {
+    "name": "Name",
+    "ipAddress": "IP address",
+    "port": "Port"
+  },
   "errors": {
     "unexpected": "An unexpected exception occurred.",
     "no-connection": "No connection.",
     "forbidden": "This action is not allowed.",
     "not-found": "The requested data was not found.",
-    "conflict": "The data has changed. Please refresh and try again."
+    "conflict": "The data has changed. Please refresh and try again.",
+    "required": "is required."
   }
 }

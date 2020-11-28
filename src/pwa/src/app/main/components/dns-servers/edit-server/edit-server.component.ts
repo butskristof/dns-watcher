@@ -62,9 +62,13 @@ export class EditServerComponent implements OnInit {
     Object.assign(this.data, this.form?.value);
 
     if (!this.error) {
-      console.log(this.data);
-      // save
-      this.dialog.close();
+      this.serversService
+        .saveDnsServer(this.data)
+        .subscribe(result => {
+          this.dialog.close(result);
+          this.notifier.showSuccessToast('common.saved', true);
+        }, error => this.error = this.errorService
+          .getErrorMessage(error));
     }
   }
 

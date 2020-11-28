@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DnsServer} from '../../../models/entities/servers/dns-server';
 import {DnsServersService} from '../../../services/dns-servers.service';
 import {ActionButtonStyle} from '../../../../shared/models/viewmodels/action-button-style';
@@ -23,11 +23,11 @@ export class DnsServersListComponent implements OnInit {
     private readonly serversService: DnsServersService,
     private readonly dialogService: DialogService,
     private readonly notifier: NotifierService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.loadServers();
-    this.edit();
   }
 
   // region fetch data
@@ -78,13 +78,12 @@ export class DnsServersListComponent implements OnInit {
     this.serversService
       .deleteDnsServer(id)
       .subscribe(result => {
-        if (result) {
-          this.notifier
-            .showSuccessToast('dns-servers.delete.deleted', true);
-          this.loadServers();
-        }
+        this.notifier
+          .showSuccessToast('dns-servers.delete.deleted', true);
+        this.loadServers();
       }, error => this.notifier
         .showErrorToast(error));
   }
+
   // endregion
 }

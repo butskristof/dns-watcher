@@ -6,48 +6,53 @@
     [formGroup]="form"
     (ngSubmit)="save()"
   >
-    <fieldset>
-      <div class="form-group">
+    <div class="form-group">
+      <label
+        for="name"
+        translate
+      >fields.name</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        [placeholder]="'dns-servers.edit.placeholders.name' | translate"
+      />
+    </div>
+
+    <div class="ip-port-row">
+      <div class="form-group ip-address">
         <label
-          for="name"
+          for="ip-address"
           translate
-        >dns-servers.edit.fields.name</label>
+        >fields.ipAddress</label>
         <input
           type="text"
-          id="name"
-          formControlName="name"
-          [placeholder]="'dns-servers.edit.placeholders.name' | translate"
+          id="ip-address"
+          formControlName="ipAddress"
+          [placeholder]="'dns-servers.edit.placeholders.ip-address' | translate"
         />
       </div>
 
-      <div class="ip-port-row">
-        <div class="form-group ip-address">
-          <label
-            for="ip-address"
-            translate
-          >dns-servers.edit.fields.ip-address</label>
-          <input
-            type="text"
-            id="ip-address"
-            formControlName="ipAddress"
-            [placeholder]="'dns-servers.edit.placeholders.ip-address' | translate"
-          />
-        </div>
-
-        <div class="form-group port">
-          <label
-            for="port"
-            translate
-          >dns-servers.edit.fields.port</label>
-          <input
-            type="text"
-            id="port"
-            formControlName="port"
-            [placeholder]="'dns-servers.edit.placeholders.port' | translate"
-          />
-        </div>
+      <div class="form-group port">
+        <label
+          for="port"
+          translate
+        >fields.port</label>
+        <input
+          type="text"
+          id="port"
+          formControlName="port"
+          [placeholder]="'dns-servers.edit.placeholders.port' | translate"
+        />
       </div>
-    </fieldset>
+    </div>
+
+    <div
+      *ngIf="error"
+      class="error"
+    >
+      <p [innerHTML]="error"></p>
+    </div>
 
     <div class="dialog-actions">
       <button
@@ -62,7 +67,6 @@
       <button
         type="submit"
         class="button button-confirm"
-        (click)="save()"
         translate
       >
         common.save
