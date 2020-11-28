@@ -1,24 +1,26 @@
-<h4 [textContent]="message" translate></h4>
-<p
-  *ngIf="content"
-  [textContent]="content"
-></p>
-<div class="actions">
-  <button
-    type="button"
-    class="button button-outline"
-    (click)="cancel()"
-    translate
-  >
-    common.cancel
-  </button>
+<div [classList]="classList">
+  <h4 [textContent]="message" translate></h4>
+  <p
+    *ngIf="content"
+    [textContent]="content"
+  ></p>
+  <div class="actions">
+    <button
+      type="button"
+      class="button button-outline button-cancel"
+      (click)="cancel()"
+      translate
+    >
+      common.cancel
+    </button>
 
-  <button
-    type="button"
-    class="button"
-    (click)="confirm()"
-    translate
-  >
-    common.ok
-  </button>
+    <button
+      type="button"
+      class="button button-confirm"
+      (click)="confirm()"
+      translate
+    >
+      common.ok
+    </button>
+  </div>
 </div>

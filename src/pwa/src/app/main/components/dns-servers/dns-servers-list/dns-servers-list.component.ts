@@ -41,7 +41,8 @@ export class DnsServersListComponent implements OnInit {
     const ref = this.dialogService.open(ConfirmDialogComponent, {
       data: {
         message: 'dns-servers.delete.message',
-        content: server?.pretty
+        content: server?.pretty,
+        style: 'danger'
       }
     });
 

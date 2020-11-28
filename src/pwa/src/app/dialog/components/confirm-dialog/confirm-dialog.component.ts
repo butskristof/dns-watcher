@@ -25,6 +25,8 @@ export class ConfirmDialogComponent implements OnInit {
     this.dialog.close();
   }
 
+  // region getters
+
   get message(): string {
     return this.config?.data?.message ?? '';
   }
@@ -32,4 +34,10 @@ export class ConfirmDialogComponent implements OnInit {
   get content(): string | null {
     return this.config?.data?.content ?? null;
   }
+
+  get classList(): string {
+    return `dialog ${this.config?.data?.style}`;
+  }
+
+  // endregion
 }
