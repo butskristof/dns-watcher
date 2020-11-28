@@ -21,6 +21,8 @@ export class DomainComponent
 
   recordType = RecordType;
 
+  activeRecord: Record | null = null;
+
   constructor(
     private readonly domainsService: DomainsService,
     private readonly navigationService: NavigationService
@@ -65,6 +67,13 @@ export class DomainComponent
   }
 
   // endregion
+
+  // region actions
+  setActiveRecord(record: Record): void {
+    this.activeRecord = record;
+  }
+  // endregion
+
   getRecordDetailsLink(record: Record): string {
     if (this.domainId == null || record?.id == null) {
       return '';

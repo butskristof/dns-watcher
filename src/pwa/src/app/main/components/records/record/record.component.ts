@@ -19,7 +19,7 @@ export class RecordComponent
   @Input()
   domainId: string | null = null;
   @Input()
-  recordId: string | null = null;
+  recordId: string | null | undefined = null;
 
   record: Record | null = null;
   domain: Domain | null = null;

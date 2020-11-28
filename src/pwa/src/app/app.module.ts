@@ -10,12 +10,15 @@ import {Config} from './config';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {AuthModule} from './auth/auth.module';
+import {SharedModule} from './shared/shared.module';
+import { HoverClassDirective } from './directives/hover-class.directive';
 
 registerLocaleData(localeEnBe);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HoverClassDirective
   ],
   imports: [
     HttpClientModule,
@@ -28,7 +31,8 @@ registerLocaleData(localeEnBe);
         deps: [HttpClient]
       }
     }),
-    AuthModule
+    AuthModule,
+    SharedModule
   ],
   providers: [
     {

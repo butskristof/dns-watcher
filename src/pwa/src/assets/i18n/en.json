@@ -8,9 +8,11 @@
     "username": "Username",
     "password": "Password",
     "remember": "Remember me",
-    "submit": "Log in"
+    "submit": "Log in",
+    "logout": "Log out"
   },
-  "domain": {
+  "domains": {
+    "title": "Domains",
     "back-domains": "Back to domains",
     "domain-name": "Domain name",
     "record-results": "Results"
@@ -30,5 +32,8 @@
     "ok": "OK",
     "nok": "not OK",
     "age": "updated"
+  },
+  "dns-servers": {
+    "title": "DNS servers"
   }
 }

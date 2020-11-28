@@ -1,10 +1,8 @@
 <ng-container
   *ngIf="domain != null"
 >
-  <h2 translate>Domain name</h2>
-  <p [textContent]="domain.domainName"></p>
+  <h2 [textContent]="domain.domainName"></h2>
 
-  <h2 translate>Watched records</h2>
   <table>
     <thead>
     <tr>
@@ -25,11 +23,22 @@
       <td [textContent]="record.expectedTimeToLive"></td>
       <td>
         <a
-          [routerLink]="getRecordDetailsLink(record)"
+          [routerLink]=""
+          (click)="setActiveRecord(record)"
           translate
-        >domain.record-results</a>
+        >domains.record-results</a>
       </td>
     </tr>
     </tbody>
   </table>
+
+  <ng-container
+    *ngIf="activeRecord"
+  >
+    <app-record
+      [recordId]="activeRecord.id"
+      [domainId]="domainId"
+    ></app-record>
+  </ng-container>
+
 </ng-container>

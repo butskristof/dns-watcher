@@ -1,0 +1,38 @@
+@import "variables";
+
+.error {
+  color: $red;
+}
+
+.list {
+  .list-item {
+    border-bottom: $border;
+    margin-bottom: 0.5rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .actions {
+      display: flex;
+      align-items: center;
+
+      :not(:first-child) {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+}
+
+.button {
+  padding: 0 1rem;
+}
+
+.basic-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .actions {
+  }
+}
