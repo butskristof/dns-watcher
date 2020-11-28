@@ -29,4 +29,18 @@ export class DnsServersListComponent implements OnInit {
   }
   // endregion
 
+  // region actions
+
+  edit(server: DnsServer | null = null): void {
+    console.log(`edit ${server?.name}`);
+  }
+
+  promptDeleteServer(server: DnsServer): void {
+    console.log('delete');
+  }
+
+  private deleteServer(id: string): void {
+
+  }
+  // endregion
 }
