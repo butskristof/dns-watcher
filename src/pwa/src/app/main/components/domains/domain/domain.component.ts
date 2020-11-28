@@ -6,6 +6,9 @@ import utilities from '../../../../shared/helpers/utilities';
 import {RecordType} from '../../../models/entities/domains/record-type';
 import {NavigationService} from '../../../../shared/services/navigation.service';
 import {ActionButtonStyle} from '../../../../shared/models/viewmodels/action-button-style';
+import {EditDomainComponent} from '../edit-domain/edit-domain.component';
+import {DialogService} from '../../../../dialog/services/dialog.service';
+import {NotifierService} from '../../../../shared/services/notifier.service';
 
 @Component({
   selector: 'app-domain',
@@ -26,7 +29,9 @@ export class DomainComponent
 
   constructor(
     private readonly domainsService: DomainsService,
-    private readonly navigationService: NavigationService
+    private readonly navigationService: NavigationService,
+    private readonly dialogService: DialogService,
+    private readonly notifier: NotifierService
   ) {
   }
 
@@ -40,6 +45,7 @@ export class DomainComponent
   }
 
   // region fetch data
+
   private loadDomain(): void {
     if (this.domainId == null) {
       this.domain = null;
@@ -53,22 +59,6 @@ export class DomainComponent
 
   // endregion
 
-  // region getters
-
-  get stringified(): string {
-    return this.domain == null
-      ? ''
-      : JSON.stringify(this.domain, null, 2);
-  }
-
-  getHostname(record: Record): string {
-    return utilities.isNullOrWhitespace(record.prefix)
-      ? (this.domain?.domainName ?? '')
-      : `${record.prefix}.${this.domain?.domainName}`;
-  }
-
-  // endregion
-
   // region actions
 
   setActiveRecord(record: Record): void {
@@ -76,7 +66,16 @@ export class DomainComponent
   }
 
   edit(): void {
-
+    const ref = this.dialogService
+      .open(EditDomainComponent, {
+        data: { domain: this.domain }
+      });
+    ref.afterClosed
+      .subscribe(result => {
+        if (result) {
+          this.loadDomain();
+        }
+      }, error => this.notifier.showErrorToast(error));
   }
 
   promptDelete(): void {
@@ -85,10 +84,20 @@ export class DomainComponent
 
   // endregion
 
+  // region getters
+
+  getHostname(record: Record): string {
+    return utilities.isNullOrWhitespace(record.prefix)
+      ? (this.domain?.domainName ?? '')
+      : `${record.prefix}.${this.domain?.domainName}`;
+  }
+
   getRecordDetailsLink(record: Record): string {
     if (this.domainId == null || record?.id == null) {
       return '';
     }
     return this.navigationService.getRecordDetailsLink(this.domainId, record.id);
   }
+
+  // endregion
 }
