@@ -1,8 +1,22 @@
 <ng-container
   *ngIf="domain != null"
 >
-  <h2 [textContent]="domain.domainName"></h2>
+  <div class="basic-header">
+    <h3 [textContent]="domain.domainName"></h3>
+    <div class="actions">
+      <app-action-button
+        icon="mbri-edit2"
+        (clicked)="edit()"
+      ></app-action-button>
+      <app-action-button
+        icon="mbri-trash"
+        [buttonStyle]="actionButtonStyles.Danger"
+        (clicked)="promptDelete()"
+      ></app-action-button>
+    </div>
+  </div>
 
+  <!--
   <table>
     <thead>
     <tr>
@@ -40,5 +54,6 @@
       [domainId]="domainId"
     ></app-record>
   </ng-container>
+  -->
 
 </ng-container>

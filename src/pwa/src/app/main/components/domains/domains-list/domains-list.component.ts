@@ -28,6 +28,12 @@ export class DomainsListComponent implements OnInit {
   }
   // endregion
 
+  // region actions
+  edit(): void {
+
+  }
+  // endregion
+
   // region getters
   getDomainDetailsLink(domain: Domain): string {
     if (domain.id == null) { return ''; }

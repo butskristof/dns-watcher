@@ -20,7 +20,7 @@
   },
   "domains": {
     "title": "Domains",
-    "back-domains": "Back to domains",
+    "back-dashboard": "Dashboard",
     "domain-name": "Domain name",
     "record-results": "Results"
   },
