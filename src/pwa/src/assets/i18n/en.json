@@ -22,7 +22,18 @@
     "title": "Domains",
     "back-dashboard": "Dashboard",
     "domain-name": "Domain name",
-    "record-results": "Results"
+    "record-results": "Results",
+    "delete": {
+      "message": "Delete domain?",
+      "deleted": "Domain was deleted."
+    },
+    "edit": {
+      "title-edit": "Edit domain",
+      "title-create": "Add domain",
+      "placeholders": {
+        "domain-name": "example.com"
+      }
+    }
   },
   "records": {
     "back-domain": "Back to domain",
@@ -48,7 +59,7 @@
     },
     "edit": {
       "title-edit": "Edit DNS server",
-      "title-create": "Create DNS server",
+      "title-create": "Add DNS server",
       "placeholders": {
         "name": "Cloudflare",
         "ip-address": "1.1.1.1",

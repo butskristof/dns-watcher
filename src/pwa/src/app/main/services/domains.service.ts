@@ -5,6 +5,8 @@ import {Domains} from '../models/entities/domains/domains';
 import {Config} from '../../config';
 import {map} from 'rxjs/operators';
 import {Domain} from '../models/entities/domains/domain';
+import {CreateOrUpdateDomainData} from '../models/data/domains/create-or-update-domain-data';
+import {DnsServer} from '../models/entities/servers/dns-server';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +29,18 @@ export class DomainsService {
     return this.http
       .get<Domain>(url)
       .pipe(map(e => new Domain(e)));
+  }
+
+  saveDomain(data: CreateOrUpdateDomainData): Observable<Domain> {
+    if (data.id) {
+      const url = `${this.baseUrl}/${data.id}`;
+      return this.http
+        .put<Domain>(url, data)
+        .pipe(map(result => new Domain(result)));
+    } else {
+      return this.http
+        .post<Domain>(this.baseUrl, data)
+        .pipe(map(result => new Domain(result)));
+    }
   }
 }

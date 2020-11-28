@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -37,6 +38,7 @@ namespace DnsWatcher.Application.Services
 		public async Task<WatchedDomainsDto> GetWatchedDomainsAsync()
 		{
 			var domains = await _context.WatchedDomains
+				.OrderBy(e => e.DomainName)
 				.ToListAsync();
 			
 			return new WatchedDomainsDto

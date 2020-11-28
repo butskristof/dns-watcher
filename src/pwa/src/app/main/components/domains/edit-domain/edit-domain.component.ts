@@ -1,26 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Domain} from '../../../models/entities/domains/domain';
 import {DialogConfig} from '../../../../dialog/models/dialog-config';
 import {DialogRef} from '../../../../dialog/models/dialog-ref';
-import {DnsServer} from '../../../models/entities/servers/dns-server';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ErrorService} from '../../../../shared/services/error.service';
-import {DnsServersService} from '../../../services/dns-servers.service';
 import {NotifierService} from '../../../../shared/services/notifier.service';
-import {CreateOrUpdateDnsServerData} from '../../../models/data/servers/create-or-update-dns-server-data';
+import {CreateOrUpdateDomainData} from '../../../models/data/domains/create-or-update-domain-data';
+import {DomainsService} from '../../../services/domains.service';
 
 @Component({
-  selector: 'app-edit-server',
-  templateUrl: './edit-server.component.html',
-  styleUrls: ['./edit-server.component.scss']
+  selector: 'app-edit-domain',
+  templateUrl: './edit-domain.component.html',
+  styleUrls: ['./edit-domain.component.scss']
 })
-export class EditServerComponent implements OnInit {
+export class EditDomainComponent implements OnInit {
   // region properties
   form?: FormGroup;
   error?: string;
 
-  private server?: DnsServer;
-  private data = new CreateOrUpdateDnsServerData();
-
+  private domain?: Domain;
+  private data = new CreateOrUpdateDomainData();
   // endregion
 
   constructor(
@@ -28,14 +27,15 @@ export class EditServerComponent implements OnInit {
     private readonly dialog: DialogRef,
     private readonly formBuilder: FormBuilder,
     private readonly errorService: ErrorService,
-    private readonly serversService: DnsServersService,
-    private readonly notifier: NotifierService
-  ) { }
+    private readonly notifier: NotifierService,
+    private readonly domainsService: DomainsService
+  ) {
+  }
 
   ngOnInit(): void {
-    if (this.config.data.server) {
-      this.server = this.config.data.server;
-      this.data = new CreateOrUpdateDnsServerData(this.server);
+    if (this.config.data.domain) {
+      this.domain = this.config.data.domain;
+      this.data = new CreateOrUpdateDomainData(this.domain);
     }
 
     this.buildForm();
@@ -44,9 +44,7 @@ export class EditServerComponent implements OnInit {
   // region form
   private buildForm(): void {
     this.form = this.formBuilder.group({
-      name: [this.data.name, Validators.required],
-      ipAddress: [this.data.ipAddress, Validators.required],
-      port: [this.data.port, Validators.required],
+      domainName: [this.data.domainName, Validators.required]
     });
   }
 
@@ -58,12 +56,10 @@ export class EditServerComponent implements OnInit {
   // region actions
   save(): void {
     this.clearError();
-
     Object.assign(this.data, this.form?.value);
-
     if (!this.error) {
-      this.serversService
-        .saveDnsServer(this.data)
+      this.domainsService
+        .saveDomain(this.data)
         .subscribe(result => {
           this.dialog.close(result);
           this.notifier.showSuccessToast('common.saved', true);
@@ -84,7 +80,7 @@ export class EditServerComponent implements OnInit {
   }
 
   get title(): string {
-    return 'dns-servers.edit.title-' + (this.forCreate
+    return 'domains.edit.title-' + (this.forCreate
       ? 'create' : 'edit');
   }
 

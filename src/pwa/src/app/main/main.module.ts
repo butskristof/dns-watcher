@@ -13,6 +13,7 @@ import { DnsServersListComponent } from './components/dns-servers/dns-servers-li
 import {SharedModule} from '../shared/shared.module';
 import { EditServerComponent } from './components/dns-servers/edit-server/edit-server.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { EditDomainComponent } from './components/domains/edit-domain/edit-domain.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     RecordPageComponent,
     RecordComponent,
     DnsServersListComponent,
-    EditServerComponent
+    EditServerComponent,
+    EditDomainComponent
   ],
   imports: [
     CommonModule,
