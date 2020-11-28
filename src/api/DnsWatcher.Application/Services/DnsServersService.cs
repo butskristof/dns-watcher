@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using DnsWatcher.Application.Common.Interfaces;
@@ -35,6 +36,7 @@ namespace DnsWatcher.Application.Services
 		public async Task<DnsServersDto> GetDnsServersAsync()
 		{
 			var servers = await _context.DnsServers
+				.OrderBy(e => e.Name)
 				.ToListAsync();
 			
 			return new DnsServersDto
