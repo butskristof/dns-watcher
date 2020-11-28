@@ -1,4 +1,11 @@
-<h3 translate>dns-servers.title</h3>
+<div class="basic-header">
+  <h3 translate>dns-servers.title</h3>
+  <div class="actions">
+    <app-action-button
+      icon="mbri-plus"
+    ></app-action-button>
+  </div>
+</div>
 
 <div class="list">
   <div class="list-item"
@@ -11,13 +18,13 @@
       </div>
     </div>
     <div class="actions">
-      <app-list-item-button
+      <app-action-button
         icon="mbri-edit2"
-      ></app-list-item-button>
-      <app-list-item-button
+      ></app-action-button>
+      <app-action-button
         icon="mbri-trash"
-        buttonStyle="danger"
-      ></app-list-item-button>
+        [buttonStyle]="actionButtonStyles.Danger"
+      ></app-action-button>
     </div>
   </div>
 </div>

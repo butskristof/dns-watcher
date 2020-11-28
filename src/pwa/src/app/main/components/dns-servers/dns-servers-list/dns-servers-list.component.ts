@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DnsServer} from '../../../models/entities/servers/dns-server';
 import {DnsServersService} from '../../../services/dns-servers.service';
+import {ActionButtonStyle} from '../../../../shared/models/viewmodels/action-button-style';
 
 @Component({
   selector: 'app-dns-servers-list',
@@ -9,6 +10,8 @@ import {DnsServersService} from '../../../services/dns-servers.service';
 })
 export class DnsServersListComponent implements OnInit {
   servers: DnsServer[] = [];
+
+  actionButtonStyles = ActionButtonStyle;
 
   constructor(
     private readonly serversService: DnsServersService

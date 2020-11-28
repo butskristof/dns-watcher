@@ -1,7 +1,7 @@
 @import "variables";
 
 .error {
-  color: red;
+  color: $red;
 }
 
 .list {
@@ -26,4 +26,13 @@
 
 .button {
   padding: 0 1rem;
+}
+
+.basic-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .actions {
+  }
 }
