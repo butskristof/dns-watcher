@@ -8,7 +8,8 @@
     "username": "Username",
     "password": "Password",
     "remember": "Remember me",
-    "submit": "Log in"
+    "submit": "Log in",
+    "logout": "Log out"
   },
   "domains": {
     "title": "Domains",
