@@ -3,6 +3,7 @@
   <div class="actions">
     <app-action-button
       icon="mbri-plus"
+      (clicked)="edit()"
     ></app-action-button>
   </div>
 </div>
@@ -20,11 +21,14 @@
     <div class="actions">
       <app-action-button
         icon="mbri-edit2"
+        (clicked)="edit(server)"
       ></app-action-button>
       <app-action-button
         icon="mbri-trash"
         [buttonStyle]="actionButtonStyles.Danger"
+        (clicked)="promptDeleteServer(server)"
       ></app-action-button>
     </div>
   </div>
 </div>
+

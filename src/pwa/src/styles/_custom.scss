@@ -1,8 +1,10 @@
 @import "variables";
+@import "Color";
 
 .error {
   color: $red;
 }
+
 
 .list {
   .list-item {
@@ -24,15 +26,30 @@
   }
 }
 
-.button {
-  padding: 0 1rem;
-}
-
 .basic-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
 
-  .actions {
+.dialog {
+  .dialog-title {
+    border-bottom: $border;
+    margin-bottom: 1rem;
+  }
+
+  .dialog-actions {
+    text-align: right;
+
+    border-top: $border;
+    padding-top: 1rem;
+
+    :not(:first-child) {
+      margin-left: 0.5rem;
+    }
+
+    button {
+      margin-bottom: 0;
+    }
   }
 }

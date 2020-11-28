@@ -1,8 +1,8 @@
 export class TokenInfo {
-  userId = '';
-  username = '';
-  token = '';
-  validUntil: Date = new Date();
+  userId?: string;
+  username?: string;
+  token?: string;
+  validUntil?: Date;
 
   constructor(tokenInfo: TokenInfo | null = null) {
     if (tokenInfo) {

@@ -2,14 +2,21 @@
   "common": {
     "app-name": "DNS watcher",
     "update": "Update",
-    "updating": "Updating"
+    "updating": "Updating",
+    "cancel": "Cancel",
+    "ok": "OK",
+    "save": "Save",
+    "saved": "Changes were saved."
   },
   "login": {
     "username": "Username",
     "password": "Password",
     "remember": "Remember me",
     "submit": "Log in",
-    "logout": "Log out"
+    "logout": "Log out",
+    "placeholders": {
+      "username": "john@doe.com"
+    }
   },
   "domains": {
     "title": "Domains",
@@ -34,6 +41,32 @@
     "age": "updated"
   },
   "dns-servers": {
-    "title": "DNS servers"
+    "title": "DNS servers",
+    "delete": {
+      "message": "Delete DNS server?",
+      "deleted": "DNS server was deleted."
+    },
+    "edit": {
+      "title-edit": "Edit DNS server",
+      "title-create": "Create DNS server",
+      "placeholders": {
+        "name": "Cloudflare",
+        "ip-address": "1.1.1.1",
+        "port": "53"
+      }
+    }
+  },
+  "fields": {
+    "name": "Name",
+    "ipAddress": "IP address",
+    "port": "Port"
+  },
+  "errors": {
+    "unexpected": "An unexpected exception occurred.",
+    "no-connection": "No connection.",
+    "forbidden": "This action is not allowed.",
+    "not-found": "The requested data was not found.",
+    "conflict": "The data has changed. Please refresh and try again.",
+    "required": "is required."
   }
 }

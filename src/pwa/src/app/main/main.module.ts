@@ -11,14 +11,27 @@ import { RecordPageComponent } from './pages/records/record-page/record-page.com
 import { RecordComponent } from './components/records/record/record.component';
 import { DnsServersListComponent } from './components/dns-servers/dns-servers-list/dns-servers-list.component';
 import {SharedModule} from '../shared/shared.module';
+import { EditServerComponent } from './components/dns-servers/edit-server/edit-server.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
-  declarations: [DashboardComponent, DashboardPageComponent, DomainsListComponent, DomainPageComponent, DomainComponent, RecordPageComponent, RecordComponent, DnsServersListComponent],
+  declarations: [
+    DashboardComponent,
+    DashboardPageComponent,
+    DomainsListComponent,
+    DomainPageComponent,
+    DomainComponent,
+    RecordPageComponent,
+    RecordComponent,
+    DnsServersListComponent,
+    EditServerComponent
+  ],
   imports: [
     CommonModule,
     MainRoutingModule,
     TranslateModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class MainModule { }

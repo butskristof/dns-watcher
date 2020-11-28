@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ActionButtonStyle} from '../../../models/viewmodels/action-button-style';
 
 @Component({
@@ -11,6 +11,8 @@ export class ActionButtonComponent implements OnInit {
   icon = '';
   @Input()
   buttonStyle = ActionButtonStyle.Default;
+  @Output()
+  clicked = new EventEmitter<void>();
 
   constructor() { }
 
@@ -18,8 +20,17 @@ export class ActionButtonComponent implements OnInit {
   }
 
   // region getters
+
   get buttonClassList(): string {
     return `button button-outline ${this.buttonStyle}`;
+  }
+
+  // endregion
+
+  // region actions
+  handleClick(event: Event): void {
+    event.stopPropagation();
+    this.clicked.emit();
   }
   // endregion
 }

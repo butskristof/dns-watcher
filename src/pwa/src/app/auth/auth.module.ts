@@ -9,7 +9,10 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
-  declarations: [LoginPageComponent, LoginComponent],
+  declarations: [
+    LoginPageComponent,
+    LoginComponent
+  ],
   imports: [
     CommonModule,
     AuthRoutingModule,
