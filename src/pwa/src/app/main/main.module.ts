@@ -15,7 +15,17 @@ import { EditServerComponent } from './components/dns-servers/edit-server/edit-s
 import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
-  declarations: [DashboardComponent, DashboardPageComponent, DomainsListComponent, DomainPageComponent, DomainComponent, RecordPageComponent, RecordComponent, DnsServersListComponent, EditServerComponent],
+  declarations: [
+    DashboardComponent,
+    DashboardPageComponent,
+    DomainsListComponent,
+    DomainPageComponent,
+    DomainComponent,
+    RecordPageComponent,
+    RecordComponent,
+    DnsServersListComponent,
+    EditServerComponent
+  ],
   imports: [
     CommonModule,
     MainRoutingModule,

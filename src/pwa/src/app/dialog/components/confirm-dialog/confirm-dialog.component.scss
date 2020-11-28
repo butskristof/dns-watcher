@@ -6,9 +6,8 @@
     border-color: $red;
 
     &:hover {
-      background-color: $white;
-      border-color: $red;
-      color: $red;
+      background-color: $red-dark;
+      border-color: $red-dark;
     }
   }
 }

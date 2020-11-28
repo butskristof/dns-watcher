@@ -13,7 +13,10 @@
     "password": "Password",
     "remember": "Remember me",
     "submit": "Log in",
-    "logout": "Log out"
+    "logout": "Log out",
+    "placeholders": {
+      "username": "john@doe.com"
+    }
   },
   "domains": {
     "title": "Domains",

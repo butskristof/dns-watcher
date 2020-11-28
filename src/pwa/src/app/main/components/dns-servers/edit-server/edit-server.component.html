@@ -3,6 +3,7 @@
     <h4 translate [textContent]="title"></h4>
   </div>
   <form
+    *ngIf="form"
     [formGroup]="form"
     (ngSubmit)="save()"
   >

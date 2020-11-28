@@ -10,10 +10,10 @@ import {NavigationService} from '../../../shared/services/navigation.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  private returnUrl: string | null = null;
+  private returnUrl: string = this.navigationService.getDashboardLink();
 
-  form: FormGroup = this.formBuilder.group({});
-  error: string | null = null;
+  form?: FormGroup;
+  error?: string;
   loading = false;
 
   constructor(
@@ -21,8 +21,7 @@ export class LoginComponent implements OnInit {
     private readonly formBuilder: FormBuilder,
     private readonly authService: AuthService,
     private readonly navigationService: NavigationService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.setupQueryParamListener();
@@ -45,6 +44,7 @@ export class LoginComponent implements OnInit {
   // endregion
 
   // region form
+
   private buildForm(): void {
     this.form = this.formBuilder.group({
       username: [null, Validators.required],
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
   }
 
   private clearError(): void {
-    this.error = null;
+    this.error = undefined;
   }
 
   // endregion
@@ -78,5 +78,6 @@ export class LoginComponent implements OnInit {
         }, error => this.error = error.message);
     }
   }
+
   // endregion
 }

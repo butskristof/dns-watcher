@@ -1,10 +1,6 @@
 @import "variables";
 
 .overlay {
-  //display: flex;
-  //align-items: center;
-  //justify-content: center;
-
   position: fixed;
 
   top: 0;
@@ -27,7 +23,5 @@
   max-width: 80rem;
   padding: 1.5rem;
 
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: calc(#{$header-height} + 2rem);
+  margin: calc(#{$header-height} + 2rem) auto;
 }

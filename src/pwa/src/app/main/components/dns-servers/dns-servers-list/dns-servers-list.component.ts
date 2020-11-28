@@ -3,9 +3,6 @@ import {DnsServer} from '../../../models/entities/servers/dns-server';
 import {DnsServersService} from '../../../services/dns-servers.service';
 import {ActionButtonStyle} from '../../../../shared/models/viewmodels/action-button-style';
 import {DialogService} from '../../../../dialog/services/dialog.service';
-import {ExampleComponent} from '../../../../dialog/components/example/example.component';
-import {ConfirmDialogComponent} from '../../../../dialog/components/confirm-dialog/confirm-dialog.component';
-import {filter} from 'rxjs/operators';
 import {NotifierService} from '../../../../shared/services/notifier.service';
 import {EditServerComponent} from '../edit-server/edit-server.component';
 

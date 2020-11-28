@@ -78,12 +78,15 @@ export class EditServerComponent implements OnInit {
   // endregion
 
   // region getters
+
   get forCreate(): boolean {
     return !this.data.id;
   }
+
   get title(): string {
     return 'dns-servers.edit.title-' + (this.forCreate
       ? 'create' : 'edit');
   }
+
   // endregion
 }
