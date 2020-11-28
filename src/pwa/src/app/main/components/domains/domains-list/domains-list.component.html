@@ -1,12 +1,20 @@
-<h3 translate>domains.title</h3>
+<div class="basic-header">
+  <h3 translate>domains.title</h3>
+</div>
 
-<ul>
-  <li
+<div class="list">
+  <div
+    class="list-item"
     *ngFor="let domain of domains"
   >
-    <a
-      [textContent]="domain.domainName"
-      [routerLink]="getDomainDetailsLink(domain)"
-    ></a>
-  </li>
-</ul>
+    <div class="content">
+      <div [textContent]="domain.domainName"></div>
+    </div>
+    <div class="actions">
+      <app-action-button
+        [link]="getDomainDetailsLink(domain)"
+        icon="mbri-right"
+      ></app-action-button>
+    </div>
+  </div>
+</div>

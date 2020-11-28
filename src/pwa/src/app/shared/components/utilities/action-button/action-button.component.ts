@@ -11,6 +11,9 @@ export class ActionButtonComponent implements OnInit {
   icon = '';
   @Input()
   buttonStyle = ActionButtonStyle.Default;
+  @Input()
+  link?: string;
+
   @Output()
   clicked = new EventEmitter<void>();
 
