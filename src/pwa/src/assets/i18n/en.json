@@ -33,7 +33,8 @@
       "placeholders": {
         "domain-name": "example.com"
       }
-    }
+    },
+    "propagation-title": "Successful results"
   },
   "records": {
     "back-domain": "Back to domain",

@@ -14,6 +14,7 @@ import {SharedModule} from '../shared/shared.module';
 import { EditServerComponent } from './components/dns-servers/edit-server/edit-server.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { EditDomainComponent } from './components/domains/edit-domain/edit-domain.component';
+import { DomainPropagationComponent } from './components/domains/domain-propagation/domain-propagation.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EditDomainComponent } from './components/domains/edit-domain/edit-domai
     RecordComponent,
     DnsServersListComponent,
     EditServerComponent,
-    EditDomainComponent
+    EditDomainComponent,
+    DomainPropagationComponent
   ],
   imports: [
     CommonModule,
