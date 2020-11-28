@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {DnsServer} from '../../../models/entities/servers/dns-server';
 import {DnsServersService} from '../../../services/dns-servers.service';
 import {ActionButtonStyle} from '../../../../shared/models/viewmodels/action-button-style';
+import {DialogService} from '../../../../dialog/services/dialog.service';
+import {ExampleComponent} from '../../../../dialog/components/example/example.component';
+import {log} from 'util';
 
 @Component({
   selector: 'app-dns-servers-list',
@@ -14,7 +17,8 @@ export class DnsServersListComponent implements OnInit {
   actionButtonStyles = ActionButtonStyle;
 
   constructor(
-    private readonly serversService: DnsServersService
+    private readonly serversService: DnsServersService,
+    private readonly dialogService: DialogService
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +37,14 @@ export class DnsServersListComponent implements OnInit {
 
   edit(server: DnsServer | null = null): void {
     console.log(`edit ${server?.name}`);
+    const ref = this.dialogService.open(ExampleComponent, {
+      data: {
+        message: 'I am dynamic.'
+      }
+    });
+
+    ref.afterClosed
+      .subscribe(result => console.log(result));
   }
 
   promptDeleteServer(server: DnsServer): void {
