@@ -40,5 +40,12 @@
     "delete": {
       "message": "Delete DNS server?"
     }
+  },
+  "errors": {
+    "unexpected": "An unexpected exception occurred.",
+    "no-connection": "No connection.",
+    "forbidden": "This action is not allowed.",
+    "not-found": "The requested data was not found.",
+    "conflict": "The data has changed. Please refresh and try again."
   }
 }

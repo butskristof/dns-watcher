@@ -11,6 +11,8 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {AuthModule} from './auth/auth.module';
 import {SharedModule} from './shared/shared.module';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 registerLocaleData(localeEnBe);
 
@@ -30,7 +32,11 @@ registerLocaleData(localeEnBe);
       }
     }),
     AuthModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    })
   ],
   providers: [
     {

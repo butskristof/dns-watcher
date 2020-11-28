@@ -6,6 +6,7 @@ import {DialogService} from '../../../../dialog/services/dialog.service';
 import {ExampleComponent} from '../../../../dialog/components/example/example.component';
 import {ConfirmDialogComponent} from '../../../../dialog/components/confirm-dialog/confirm-dialog.component';
 import {filter} from 'rxjs/operators';
+import {NotifierService} from '../../../../shared/services/notifier.service';
 
 @Component({
   selector: 'app-dns-servers-list',
@@ -19,12 +20,13 @@ export class DnsServersListComponent implements OnInit {
 
   constructor(
     private readonly serversService: DnsServersService,
-    private readonly dialogService: DialogService
+    private readonly dialogService: DialogService,
+    private readonly notifier: NotifierService
   ) { }
 
   ngOnInit(): void {
     this.loadServers();
-    this.edit();
+    this.notifier.showSuccessToast('hello');
   }
 
   // region fetch data

@@ -6,7 +6,10 @@ import {TranslateModule} from '@ngx-translate/core';
 import { ActionButtonComponent } from './components/utilities/action-button/action-button.component';
 
 @NgModule({
-  declarations: [HeaderComponent, ActionButtonComponent],
+  declarations: [
+    HeaderComponent,
+    ActionButtonComponent
+  ],
   exports: [
     HeaderComponent,
     ActionButtonComponent
