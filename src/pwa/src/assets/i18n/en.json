@@ -4,7 +4,8 @@
     "update": "Update",
     "updating": "Updating",
     "cancel": "Cancel",
-    "ok": "OK"
+    "ok": "OK",
+    "save": "Save"
   },
   "login": {
     "username": "Username",
@@ -40,6 +41,20 @@
     "delete": {
       "message": "Delete DNS server?",
       "deleted": "DNS server was deleted."
+    },
+    "edit": {
+      "title-edit": "Edit DNS server",
+      "title-create": "Create DNS server",
+      "fields": {
+        "name": "Name",
+        "ip-address": "IP address",
+        "port": "Port"
+      },
+      "placeholders": {
+        "name": "Cloudflare",
+        "ip-address": "1.1.1.1",
+        "port": "53"
+      }
     }
   },
   "errors": {

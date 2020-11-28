@@ -7,6 +7,7 @@ import {ExampleComponent} from '../../../../dialog/components/example/example.co
 import {ConfirmDialogComponent} from '../../../../dialog/components/confirm-dialog/confirm-dialog.component';
 import {filter} from 'rxjs/operators';
 import {NotifierService} from '../../../../shared/services/notifier.service';
+import {EditServerComponent} from '../edit-server/edit-server.component';
 
 @Component({
   selector: 'app-dns-servers-list',
@@ -26,19 +27,33 @@ export class DnsServersListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadServers();
+    this.edit();
   }
 
   // region fetch data
+
   private loadServers(): void {
     this.serversService
       .getDnsServers()
-      .subscribe(result => this.servers = result.dnsServers);
+      .subscribe(result => this.servers = result.dnsServers,
+        error => this.notifier.showErrorToast(error));
   }
+
   // endregion
 
   // region actions
 
   edit(server?: DnsServer): void {
+    const ref = this.dialogService
+      .open(EditServerComponent, {
+        data: {server}
+      });
+    ref.afterClosed
+      .subscribe(result => {
+        if (result) {
+          this.loadServers();
+        }
+      }, error => this.notifier.showErrorToast(error));
   }
 
   promptDeleteServer(server: DnsServer): void {
@@ -62,10 +77,14 @@ export class DnsServersListComponent implements OnInit {
 
     this.serversService
       .deleteDnsServer(id)
-      .subscribe(() => {
-        this.notifier.showSuccessToast('dns-servers.delete.deleted', true);
-        this.loadServers();
-      });
+      .subscribe(result => {
+        if (result) {
+          this.notifier
+            .showSuccessToast('dns-servers.delete.deleted', true);
+          this.loadServers();
+        }
+      }, error => this.notifier
+        .showErrorToast(error));
   }
   // endregion
 }
