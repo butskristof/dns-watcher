@@ -3,15 +3,17 @@ using System;
 using DnsWatcher.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DnsWatcher.Persistence.Migrations
 {
     [DbContext(typeof(DnsWatcherDbContext))]
-    partial class DnsWatcherDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201129110455_RemoveRecordType")]
+    partial class RemoveRecordType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,9 +145,6 @@ namespace DnsWatcher.Persistence.Migrations
                         .HasMaxLength(512)
                         .HasColumnType("character varying(512)");
 
-                    b.Property<int>("RecordType")
-                        .HasColumnType("integer");
-
                     b.Property<Guid>("WatchedDomainId")
                         .HasColumnType("uuid");
 
@@ -154,53 +153,6 @@ namespace DnsWatcher.Persistence.Migrations
                     b.HasIndex("WatchedDomainId");
 
                     b.ToTable("WatchedRecords");
-                });
-
-            modelBuilder.Entity("DnsWatcher.Domain.Entities.Identity.RefreshToken", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("CreatedBy")
-                        .HasMaxLength(512)
-                        .HasColumnType("character varying(512)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("DeletedBy")
-                        .HasMaxLength(512)
-                        .HasColumnType("character varying(512)");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("Expires")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasMaxLength(512)
-                        .HasColumnType("character varying(512)");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime?>("Revoked")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Token")
-                        .HasMaxLength(512)
-                        .HasColumnType("character varying(512)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("RefreshTokens");
                 });
 
             modelBuilder.Entity("DnsWatcher.Domain.Entities.Identity.User", b =>
@@ -332,17 +284,6 @@ namespace DnsWatcher.Persistence.Migrations
                     b.Navigation("WatchedDomain");
                 });
 
-            modelBuilder.Entity("DnsWatcher.Domain.Entities.Identity.RefreshToken", b =>
-                {
-                    b.HasOne("DnsWatcher.Domain.Entities.Identity.User", "User")
-                        .WithMany("RefreshTokens")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("DnsWatcher.Domain.Entities.Domains.WatchedDomain", b =>
                 {
                     b.Navigation("WatchedRecords");
@@ -351,11 +292,6 @@ namespace DnsWatcher.Persistence.Migrations
             modelBuilder.Entity("DnsWatcher.Domain.Entities.Domains.WatchedRecord", b =>
                 {
                     b.Navigation("Results");
-                });
-
-            modelBuilder.Entity("DnsWatcher.Domain.Entities.Identity.User", b =>
-                {
-                    b.Navigation("RefreshTokens");
                 });
 #pragma warning restore 612, 618
         }

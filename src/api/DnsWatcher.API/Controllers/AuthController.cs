@@ -30,5 +30,18 @@ namespace DnsWatcher.API.Controllers
 		{
 			await _authService.Register(data);
 		}
+
+		[HttpPost("[action]")]
+		public async Task<TokenDto> Refresh([FromBody] RefreshData data)
+		{
+			return await _authService.RefreshToken(data);
+		}
+
+		[Authorize]
+		[HttpPost("[action]")]
+		public async Task RevokeTokens([FromBody] RevokeTokenData data)
+		{
+			await _authService.RevokeTokens(data);
+		}
 	}
 }

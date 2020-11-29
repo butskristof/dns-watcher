@@ -1,8 +1,10 @@
 export class TokenInfo {
   userId?: string;
   username?: string;
-  token?: string;
-  validUntil?: Date;
+  accessToken?: string;
+  accessTokenValidUntil?: Date;
+  refreshToken?: string;
+  refreshTokenValidUntil?: Date;
 
   constructor(tokenInfo: TokenInfo | null = null) {
     if (tokenInfo) {

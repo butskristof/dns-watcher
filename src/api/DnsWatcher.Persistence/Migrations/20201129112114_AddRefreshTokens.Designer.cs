@@ -3,15 +3,17 @@ using System;
 using DnsWatcher.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DnsWatcher.Persistence.Migrations
 {
     [DbContext(typeof(DnsWatcherDbContext))]
-    partial class DnsWatcherDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201129112114_AddRefreshTokens")]
+    partial class AddRefreshTokens
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -200,7 +202,7 @@ namespace DnsWatcher.Persistence.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RefreshTokens");
+                    b.ToTable("RefreshToken");
                 });
 
             modelBuilder.Entity("DnsWatcher.Domain.Entities.Identity.User", b =>

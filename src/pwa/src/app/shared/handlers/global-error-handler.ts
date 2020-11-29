@@ -1,10 +1,11 @@
 import {ErrorHandler, Injectable} from '@angular/core';
 import {NavigationService} from '../services/navigation.service';
+import {AuthService} from '../../auth/services/auth.service';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
   constructor(
-    // private authService: AuthService,
+    private authService: AuthService,
     private navigationService: NavigationService
   ) {
   }
@@ -15,7 +16,7 @@ export class GlobalErrorHandler implements ErrorHandler {
     // }
 
     if (error === 'failedToRefreshToken') { // TODO
-      // this.authService.logout();
+      this.authService.logout();
       this.navigationService.goToLogin();
     } else {
       console.log(error);

@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {TokenInfo} from '../models/entities/token-info';
 
-const credentialsKey = 'credentials';
+const accessTokenKey = 'accessToken';
+const refreshTokenKey = 'refreshToken';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CredentialsService {
-  constructor() {}
+  constructor() {
+  }
 
   isAuthenticated(): boolean {
     return !!this.credentials;
@@ -15,23 +17,49 @@ export class CredentialsService {
 
   get credentials(): TokenInfo | null {
     const savedCredentials =
-      this.getWithExpiry(sessionStorage, credentialsKey)
-      || this.getWithExpiry(localStorage, credentialsKey);
+      this.getWithExpiry(sessionStorage, accessTokenKey)
+      || this.getWithExpiry(localStorage, accessTokenKey);
     return savedCredentials ? JSON.parse(savedCredentials) : null;
   }
 
+  private get refreshCredentials(): TokenInfo | null {
+    const saved = this.getWithExpiry(sessionStorage, refreshTokenKey)
+      ?? this.getWithExpiry(localStorage, refreshTokenKey);
+    return saved ? JSON.parse(saved) : null;
+  }
+
   get token(): string | null {
-    return this.credentials?.token ?? null;
+    return this.credentials?.accessToken ?? null;
+  }
+
+  get refreshToken(): string | null {
+    return this.refreshCredentials?.refreshToken ?? null;
   }
 
   setCredentials(credentials?: TokenInfo, remember?: boolean): void {
     if (credentials) {
       const storage = remember ? localStorage : sessionStorage;
-      const ttl = new Date(credentials.validUntil ?? 0).getTime() - new Date().getTime();
-      this.setWithExpiry(storage, credentialsKey, JSON.stringify(credentials), ttl);
+
+      const referenceTime = new Date().getTime();
+
+      const accessTtl = new Date(credentials.accessTokenValidUntil ?? 0).getTime() - referenceTime;
+      const accessValue = {
+        accessToken: credentials.accessToken,
+        username: credentials.username,
+        userId: credentials.userId,
+      };
+      this.setWithExpiry(storage, accessTokenKey, JSON.stringify(accessValue), accessTtl);
+
+      const refreshTtl = new Date(credentials.refreshTokenValidUntil ?? 0).getTime() - referenceTime;
+      const refreshValue = {
+        refreshToken: credentials.refreshToken
+      };
+      this.setWithExpiry(storage, refreshTokenKey, JSON.stringify(refreshValue), refreshTtl);
     } else {
-      sessionStorage.removeItem(credentialsKey);
-      localStorage.removeItem(credentialsKey);
+      sessionStorage.removeItem(accessTokenKey);
+      sessionStorage.removeItem(refreshTokenKey);
+      localStorage.removeItem(accessTokenKey);
+      localStorage.removeItem(refreshTokenKey);
     }
   }
 

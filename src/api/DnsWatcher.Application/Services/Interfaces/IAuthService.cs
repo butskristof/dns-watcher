@@ -8,5 +8,7 @@ namespace DnsWatcher.Application.Services.Interfaces
 	{
 		Task<TokenDto> Authenticate(LoginData data);
 		Task Register(RegisterData data);
+		Task<TokenDto> RefreshToken(RefreshData data);
+		Task RevokeTokens(RevokeTokenData data);
 	}
 }
