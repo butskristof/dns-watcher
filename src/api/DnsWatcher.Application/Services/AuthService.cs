@@ -24,9 +24,9 @@ namespace DnsWatcher.Application.Services
 		private readonly IJwtOptions _jwtOptions;
 
 		public AuthService(IJwtHelper jwtHelper,
-			IDnsWatcherDbContext context, 
-			IRandomGenerator randomGenerator, 
-			IDateTime dateTime, 
+			IDnsWatcherDbContext context,
+			IRandomGenerator randomGenerator,
+			IDateTime dateTime,
 			IJwtOptions jwtOptions)
 		{
 			_jwtHelper = jwtHelper;
@@ -51,19 +51,19 @@ namespace DnsWatcher.Application.Services
 
 			var referenceTime = _dateTime.Now;
 			var refreshToken = user.RefreshTokens
-				.FirstOrDefault(e => e.Revoked == null 
+				.FirstOrDefault(e => e.Revoked == null
 									&& referenceTime < e.Expires);
 			if (refreshToken == null)
 			{
 				refreshToken = CreateRefreshToken();
 				user.RefreshTokens.Add(refreshToken);
-				
+
 				await _context.SaveChangesAsync();
 			}
-			
+
 			token.RefreshToken = refreshToken.Token;
 			token.RefreshTokenValidUntil = refreshToken.Expires;
-			
+
 			return token;
 		}
 
@@ -89,31 +89,51 @@ namespace DnsWatcher.Application.Services
 		public async Task<TokenDto> RefreshToken(RefreshData data)
 		{
 			var user = await _context
-				.Users
-				.Include(e => e.RefreshTokens)
-				.SingleOrDefaultAsync(e => e.RefreshTokens
-					.Any(t => t.Token == data.RefreshToken))
-				?? throw new ForbiddenException($"Invalid refresh token.");
+							.Users
+							.Include(e => e.RefreshTokens)
+							.SingleOrDefaultAsync(e => e.RefreshTokens
+								.Any(t => t.Token == data.RefreshToken))
+						?? throw new ForbiddenException($"Invalid refresh token.");
 			var token = user.RefreshTokens
 				.Single(e => e.Token == data.RefreshToken);
 			if (token.Revoked != null || _dateTime.Now >= token.Expires)
 			{
 				throw new ForbiddenException("Invalid refresh token");
 			}
-			
+
 			// revoke current
 			token.Revoked = _dateTime.Now;
 			// generate new
 			var newToken = CreateRefreshToken();
 			user.RefreshTokens.Add(newToken);
 			await _context.SaveChangesAsync();
-			
+
 			// return new access + refresh
 			var r = _jwtHelper.GenerateJwtToken(user);
 			r.RefreshToken = newToken.Token;
 			r.RefreshTokenValidUntil = newToken.Expires;
-			
+
 			return r;
+		}
+
+		public async Task RevokeTokens(RevokeTokenData data)
+		{
+			var user = await _context
+							.Users
+							.Include(e => e.RefreshTokens)
+							.FirstOrDefaultAsync(e => e.Username == data.Username && e.Active)
+						?? throw new NotFoundException($"No user for username {data.Username}");
+
+			var referenceTime = _dateTime.Now;
+			user.RefreshTokens
+				.Where(e => e.Revoked == null)
+				.ToList()
+				.ForEach(t =>
+				{
+					t.Revoked = referenceTime;
+				});
+
+			await _context.SaveChangesAsync();
 		}
 
 		private bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)

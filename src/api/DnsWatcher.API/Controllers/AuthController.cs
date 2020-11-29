@@ -36,5 +36,12 @@ namespace DnsWatcher.API.Controllers
 		{
 			return await _authService.RefreshToken(data);
 		}
+
+		[Authorize]
+		[HttpPost("[action]")]
+		public async Task RevokeTokens([FromBody] RevokeTokenData data)
+		{
+			await _authService.RevokeTokens(data);
+		}
 	}
 }

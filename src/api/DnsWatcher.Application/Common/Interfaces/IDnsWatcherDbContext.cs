@@ -10,6 +10,7 @@ namespace DnsWatcher.Application.Common.Interfaces
 	public interface IDnsWatcherDbContext
 	{
 		DbSet<User> Users { get; set; }
+		DbSet<RefreshToken> RefreshTokens { get; set; }
 
 		DbSet<WatchedDomain> WatchedDomains { get; set; }
 		DbSet<WatchedRecord> WatchedRecords { get; set; }
