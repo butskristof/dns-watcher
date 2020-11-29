@@ -42,10 +42,6 @@ namespace DnsWatcher.Persistence.Migrations
                     b.Property<Guid>("DnsServerId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("IpAddress")
-                        .HasMaxLength(512)
-                        .HasColumnType("character varying(512)");
-
                     b.Property<string>("ModifiedBy")
                         .HasMaxLength(512)
                         .HasColumnType("character varying(512)");
@@ -55,6 +51,10 @@ namespace DnsWatcher.Persistence.Migrations
 
                     b.Property<int>("TimeToLive")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Value")
+                        .HasMaxLength(512)
+                        .HasColumnType("character varying(512)");
 
                     b.Property<Guid>("WatchedRecordId")
                         .HasColumnType("uuid");
@@ -125,12 +125,12 @@ namespace DnsWatcher.Persistence.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("ExpectedIpAddress")
-                        .HasMaxLength(512)
-                        .HasColumnType("character varying(512)");
-
                     b.Property<int>("ExpectedTimeToLive")
                         .HasColumnType("integer");
+
+                    b.Property<string>("ExpectedValue")
+                        .HasMaxLength(512)
+                        .HasColumnType("character varying(512)");
 
                     b.Property<string>("ModifiedBy")
                         .HasMaxLength(512)

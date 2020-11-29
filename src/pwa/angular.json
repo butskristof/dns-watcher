@@ -44,8 +44,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles/main.scss"
+              "src/styles/main.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles",
+                "./node_modules/milligram-scss/dist"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -107,8 +114,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles/main.scss"
+              "src/styles/main.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles",
+                "./node_modules/milligram-scss/dist"
+              ]
+            },
             "scripts": []
           }
         },

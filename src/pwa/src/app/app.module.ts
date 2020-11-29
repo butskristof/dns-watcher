@@ -10,12 +10,15 @@ import {Config} from './config';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {AuthModule} from './auth/auth.module';
+import {SharedModule} from './shared/shared.module';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 registerLocaleData(localeEnBe);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     HttpClientModule,
@@ -28,7 +31,12 @@ registerLocaleData(localeEnBe);
         deps: [HttpClient]
       }
     }),
-    AuthModule
+    AuthModule,
+    SharedModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    })
   ],
   providers: [
     {
@@ -56,6 +64,8 @@ export function initApp(http: HttpClient): () => void {
           .then(result => {
             Config.version = result.applicationInfo.version;
             Config.environment = result.applicationInfo.environment;
+
+            Config.recordType = result.recordType;
           });
       });
   };

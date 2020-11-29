@@ -1,0 +1,34 @@
+<div class="basic-header">
+  <h3 translate>dns-servers.title</h3>
+  <div class="actions">
+    <app-action-button
+      icon="mbri-plus"
+      (clicked)="edit()"
+    ></app-action-button>
+  </div>
+</div>
+
+<div class="list">
+  <div class="list-item"
+    *ngFor="let server of servers"
+  >
+    <div class="content">
+      <strong [textContent]="server.name"></strong>
+      <div>
+        {{ server.ipAddress }}:{{server.port}}
+      </div>
+    </div>
+    <div class="actions">
+      <app-action-button
+        icon="mbri-edit2"
+        (clicked)="edit(server)"
+      ></app-action-button>
+      <app-action-button
+        icon="mbri-trash"
+        [buttonStyle]="actionButtonStyles.Danger"
+        (clicked)="promptDeleteServer(server)"
+      ></app-action-button>
+    </div>
+  </div>
+</div>
+

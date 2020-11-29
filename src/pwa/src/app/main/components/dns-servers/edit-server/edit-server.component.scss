@@ -1,0 +1,14 @@
+.ip-port-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .ip-address {
+    flex-grow: 1;
+  }
+
+  .port {
+    margin-left: 1rem;
+    width: 7rem;
+  }
+}

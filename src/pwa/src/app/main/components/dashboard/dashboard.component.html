@@ -1,7 +1,9 @@
-<p>dashboard works!</p>
-<ul>
-  <li
-    *ngFor="let domain of domains"
-    [textContent]="domain.domainName"
-  ></li>
-</ul>
+<section>
+  <app-domains-list></app-domains-list>
+</section>
+
+<hr>
+
+<section>
+  <app-dns-servers-list></app-dns-servers-list>
+</section>

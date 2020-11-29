@@ -1,11 +1,102 @@
 {
   "common": {
-    "app-name": "DNS watcher"
+    "app-name": "DNS watcher",
+    "cancel": "Cancel",
+    "ok": "OK",
+    "save": "Save",
+    "saved": "Changes were saved"
   },
   "login": {
     "username": "Username",
     "password": "Password",
     "remember": "Remember me",
-    "submit": "Log in"
+    "submit": "Log in",
+    "logout": "Log out",
+    "placeholders": {
+      "username": "john@doe.com"
+    }
+  },
+  "domains": {
+    "title": "Domains",
+    "back-dashboard": "Dashboard",
+    "domain-name": "Domain name",
+    "record-results": "Results",
+    "delete": {
+      "message": "Delete domain?",
+      "deleted": "Domain was deleted"
+    },
+    "edit": {
+      "title-edit": "Edit domain",
+      "title-create": "Add domain",
+      "placeholders": {
+        "domain-name": "example.com"
+      }
+    },
+    "propagation-title": "Successful results"
+  },
+  "records": {
+    "back-domain": "Back to domain",
+    "type": "Record type",
+    "hostname": "Hostname",
+    "expected-value": "Expected value",
+    "expected-ttl": "Expected TTL",
+    "edit": {
+      "title-edit": "Edit record",
+      "title-create": "Add record",
+      "placeholders": {
+        "prefix": "e.g. www"
+      }
+    },
+    "delete": {
+      "message": "Delete record?",
+      "deleted": "Record was deleted"
+    },
+    "empty": "Add some records to get started."
+  },
+  "results": {
+    "title": "Results",
+    "value": "Value",
+    "ttl": "TTL",
+    "server": "Server",
+    "matches": "matches",
+    "ok": "OK",
+    "nok": "not OK",
+    "age": "Last updated",
+    "update": "Update",
+    "updating": "Updating",
+    "empty": "No results have been recorded yet."
+  },
+  "dns-servers": {
+    "title": "DNS servers",
+    "delete": {
+      "message": "Delete DNS server?",
+      "deleted": "DNS server was deleted"
+    },
+    "edit": {
+      "title-edit": "Edit DNS server",
+      "title-create": "Add DNS server",
+      "placeholders": {
+        "name": "Cloudflare",
+        "ip-address": "1.1.1.1",
+        "port": "53"
+      }
+    }
+  },
+  "fields": {
+    "name": "Name",
+    "ipAddress": "IP address",
+    "port": "Port",
+    "expectedValue": "Expected value",
+    "expectedTimeToLive": "Expected time to live",
+    "prefix": "Hostname",
+    "recordType": "Record type"
+  },
+  "errors": {
+    "unexpected": "An unexpected exception occurred.",
+    "no-connection": "No connection.",
+    "forbidden": "This action is not allowed.",
+    "not-found": "The requested data was not found.",
+    "conflict": "The data has changed. Please refresh and try again.",
+    "required": "is required."
   }
 }

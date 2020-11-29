@@ -1,0 +1,28 @@
+@import "variables";
+
+.button {
+  font-size: initial;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+
+  &:hover {
+    background-color: $color-primary;
+    border-color: $color-primary;
+    color: white;
+  }
+}
+
+.default {
+
+}
+
+.danger {
+  border-color: $red;
+  color: $red;
+
+  &:hover {
+    background-color: $red;
+    border-color: $red;
+    color: $white;
+  }
+}

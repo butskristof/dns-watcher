@@ -1,0 +1,86 @@
+<ng-container
+  *ngIf="record != null"
+>
+  <div class="basic-header">
+    <h3 [textContent]="getHostname()"></h3>
+    <div class="actions">
+      <app-action-button
+        icon="mbri-edit2"
+        (clicked)="edit()"
+      ></app-action-button>
+      <app-action-button
+        icon="mbri-trash"
+        [buttonStyle]="actionButtonStyles.Danger"
+        (clicked)="promptDelete()"
+      ></app-action-button>
+    </div>
+  </div>
+
+  <div class="info">
+    <div>
+      <span translate>records.expected-value</span>: {{ record.expectedValue }}
+    </div>
+    <div>
+      <span translate>records.expected-ttl</span>: {{ record.expectedTimeToLive }}
+    </div>
+    <app-domain-propagation
+      [record]="record"
+    ></app-domain-propagation>
+
+  </div>
+
+  <div class="basic-header results-header">
+    <h4 translate>results.title</h4>
+    <div class="actions">
+      <button
+        type="button"
+        [disabled]="updating"
+        (click)="updateResults()"
+        [textContent]="updating ? 'results.updating' : 'results.update'"
+        translate
+      >
+      </button>
+    </div>
+  </div>
+  <div
+    class="list"
+    *ngIf="record.results.length > 0; else emptyResults"
+  >
+    <div
+      class="list-item"
+      *ngFor="let result of record.results"
+    >
+      <div class="content">
+        <strong [textContent]="result.dnsServer?.name"></strong>
+
+        <div>
+          <span translate>results.value</span>:
+          <span
+            [className]="valueClass(result)"
+            [textContent]="result.value"
+          ></span>
+        </div>
+        <div>
+          <span translate>results.ttl</span>:
+          <span
+            [className]="ttlClass(result)"
+            [textContent]="result.timeToLive"
+          ></span>
+        </div>
+        <div>
+          <span translate>results.age</span>: {{ result.modifiedOn | date:dateFormat }}
+        </div>
+      </div>
+      <div
+        [classList]="indicatorClass(result)"
+      ></div>
+    </div>
+  </div>
+  <ng-template
+    #emptyResults
+  >
+    <span translate>
+      results.empty
+    </span>
+  </ng-template>
+</ng-container>

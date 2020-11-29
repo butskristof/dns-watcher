@@ -1,0 +1,22 @@
+<nav class="navigation">
+  <section class="container">
+    <a
+      [routerLink]=""
+      class="navigation-title"
+      translate
+    >
+      common.app-name
+    </a>
+    <div
+      class="actions"
+      *ngIf="isAuthenticated"
+    >
+      <button
+        type="button"
+        class="button button-clear logout"
+        (click)="logout()"
+        translate
+      >login.logout</button>
+    </div>
+  </section>
+</nav>

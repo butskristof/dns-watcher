@@ -1,0 +1,35 @@
+@import "variables";
+
+.info {
+  margin-bottom: 1rem;
+}
+
+.content {
+  .ok {
+    color: $green;
+  }
+
+  .nok {
+    color: $red;
+  }
+}
+
+.indicator {
+  width: 2rem;
+
+  &.ok {
+    background-color: $green;
+  }
+
+  &.nok {
+    background-color: $red;
+  }
+}
+
+.results-header {
+  align-items: center;
+
+  .actions button {
+    vertical-align: middle;
+  }
+}

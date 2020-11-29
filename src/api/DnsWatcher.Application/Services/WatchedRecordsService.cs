@@ -67,7 +67,17 @@ namespace DnsWatcher.Application.Services
 
 			_mapper.Map(data, record);
 			
-			await _context.SaveChangesAsync();
+			var rowsChanged = await _context.SaveChangesAsync();
+			if (rowsChanged > 0)
+			{
+				// delete results as they are not valid anymore
+				var results = await _context.RecordServerResults
+					.Where(e => e.WatchedRecordId == record.Id)
+					.ToListAsync();
+				_context.RecordServerResults
+					.RemoveRange(results);
+				await _context.SaveChangesAsync();
+			}
 			
 			return _mapper.Map<WatchedRecordDto>(record);
 		}

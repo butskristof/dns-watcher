@@ -1,0 +1,81 @@
+@import "variables";
+@import "Color";
+
+.error {
+  color: $red;
+}
+
+
+.list {
+  .list-item {
+    border-bottom: $border;
+    margin-bottom: 0.5rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .actions {
+      display: flex;
+      align-items: center;
+
+      :not(:first-child) {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+}
+
+.basic-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 1rem;
+
+  h3 {
+    margin-bottom: 0;
+  }
+
+  .actions {
+    :not(:first-child) {
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+.dialog {
+  .dialog-title {
+    border-bottom: $border;
+    margin-bottom: 1rem;
+  }
+
+  .dialog-actions {
+    text-align: right;
+
+    border-top: $border;
+    padding-top: 1rem;
+
+    :not(:first-child) {
+      margin-left: 0.5rem;
+    }
+
+    button {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.back-link {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+
+  display: inline-flex;
+  align-items: center;
+
+  .icon {
+    margin-top: .15rem;
+    margin-right: .75rem;
+  }
+}

@@ -1,0 +1,13 @@
+@import "variables";
+
+.dialog.danger {
+  .button-confirm {
+    background-color: $red;
+    border-color: $red;
+
+    &:hover {
+      background-color: $red-dark;
+      border-color: $red-dark;
+    }
+  }
+}

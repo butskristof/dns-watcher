@@ -54,14 +54,14 @@ namespace DnsWatcher.Application.Services
 					.FirstOrDefault(e => e.DnsServerId == server.Id);
 				if (existingResult != null)
 				{
-					existingResult.IpAddress = result.Value;
+					existingResult.Value = result.Value;
 					existingResult.TimeToLive = result.TimeToLive;
 				}
 				else
 				{
 					var newResult = new RecordServerResult
 					{
-						IpAddress = result.Value,
+						Value = result.Value,
 						TimeToLive = result.TimeToLive,
 						DnsServerId = server.Id
 					};
