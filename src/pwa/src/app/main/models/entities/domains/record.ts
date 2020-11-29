@@ -11,6 +11,7 @@ export class Record {
   recordType: RecordType = RecordType.A;
 
   results: Result[] = [];
+  propagation?: number;
 
   get prettyRecordType(): string {
     return RecordType[this.recordType];

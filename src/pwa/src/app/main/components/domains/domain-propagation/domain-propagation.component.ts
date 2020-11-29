@@ -16,7 +16,7 @@ export class DomainPropagationComponent implements OnInit {
   }
 
   get propagation(): number {
-    return 0;
+    return this.record?.propagation ?? 0;
   }
 
   getPropagation(): string {
