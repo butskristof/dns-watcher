@@ -1,8 +1,6 @@
 {
   "common": {
     "app-name": "DNS watcher",
-    "update": "Update",
-    "updating": "Updating",
     "cancel": "Cancel",
     "ok": "OK",
     "save": "Save",
@@ -58,7 +56,9 @@
     "matches": "matches",
     "ok": "OK",
     "nok": "not OK",
-    "age": "Last updated"
+    "age": "Last updated",
+    "update": "Update",
+    "updating": "Updating"
   },
   "dns-servers": {
     "title": "DNS servers",

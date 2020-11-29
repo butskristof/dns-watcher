@@ -8,11 +8,11 @@ import { ActionButtonComponent } from './components/utilities/action-button/acti
 @NgModule({
   declarations: [
     HeaderComponent,
-    ActionButtonComponent
+    ActionButtonComponent,
   ],
   exports: [
     HeaderComponent,
-    ActionButtonComponent
+    ActionButtonComponent,
   ],
   imports: [
     CommonModule,

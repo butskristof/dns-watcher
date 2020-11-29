@@ -18,7 +18,19 @@
 
   </div>
 
-  <h4 translate>results.title</h4>
+  <div class="basic-header results-header">
+    <h4 translate>results.title</h4>
+    <div class="actions">
+      <button
+        type="button"
+        [disabled]="updating"
+        (click)="updateResults()"
+        [textContent]="updating ? 'results.updating' : 'results.update'"
+        translate
+      >
+      </button>
+    </div>
+  </div>
   <div class="list">
     <div
       class="list-item"
