@@ -38,6 +38,12 @@ export class RecordsService {
     }
   }
 
+  deleteRecord(domainId: string, recordId: string): Observable<void> {
+    const url = `${this.baseUrl}/${domainId}/records/${recordId}`;
+    return this.http
+      .delete<void>(url);
+  }
+
   updateResults(domainId: string, recordId: string): Observable<Record> {
     const url = `${this.baseUrl}/${domainId}/records/${recordId}/update`;
     return this.http

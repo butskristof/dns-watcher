@@ -46,6 +46,10 @@
       "placeholders": {
         "prefix": "e.g. www"
       }
+    },
+    "delete": {
+      "message": "Delete record?",
+      "deleted": "Record was deleted."
     }
   },
   "results": {

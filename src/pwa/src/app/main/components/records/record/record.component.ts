@@ -11,6 +11,7 @@ import {ActionButtonStyle} from '../../../../shared/models/viewmodels/action-but
 import {DialogService} from '../../../../dialog/services/dialog.service';
 import {NotifierService} from '../../../../shared/services/notifier.service';
 import {EditRecordComponent} from '../edit-record/edit-record.component';
+import {NavigationService} from '../../../../shared/services/navigation.service';
 
 @Component({
   selector: 'app-record',
@@ -36,7 +37,8 @@ export class RecordComponent
     private readonly recordsService: RecordsService,
     private readonly domainsService: DomainsService,
     private readonly dialogService: DialogService,
-    private readonly notifier: NotifierService
+    private readonly notifier: NotifierService,
+    private readonly navigationService: NavigationService
   ) {
   }
 
@@ -69,7 +71,17 @@ export class RecordComponent
   }
 
   promptDelete(): void {
+    const ref = this.dialogService
+      .confirm('records.delete.message',
+        this.getHostname(),
+        'danger');
 
+    ref.afterClosed
+      .subscribe(result => {
+        if (result === true) {
+          this.deleteRecord();
+        }
+      });
   }
 
   updateResults(): void {
@@ -83,6 +95,22 @@ export class RecordComponent
       .updateResults(this.domainId, this.recordId)
       .subscribe(() => this.loadRecord())
       .add(() => this.updating = false);
+  }
+
+  private deleteRecord(): void {
+    if (this.record?.id == null || this.domainId == null) {
+      return;
+    }
+
+    this.recordsService
+      .deleteRecord(this.domainId, this.record.id)
+      .subscribe(result => {
+        this.notifier
+          .showSuccessToast('records.delete.deleted', true);
+        this.navigationService
+          .goToUrl(this.navigationService.getDomainDetailsLink(this.domainId ?? ''));
+      }, error => this.notifier
+        .showErrorToast(error));
   }
 
   // endregion
