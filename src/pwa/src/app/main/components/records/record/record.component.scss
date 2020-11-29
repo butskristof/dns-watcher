@@ -27,7 +27,8 @@
 }
 
 .indicator {
-  width: 2rem;
+  min-width: 2rem;
+  margin-left: 1rem;
 
   &.ok {
     background-color: $green;
@@ -44,4 +45,8 @@
   .actions button {
     vertical-align: middle;
   }
+}
+
+.result-value {
+  overflow-wrap: anywhere;
 }

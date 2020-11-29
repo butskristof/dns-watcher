@@ -3,8 +3,6 @@
 >
   <div class="basic-header">
     <div></div>
-<!--    <h3 [textContent]="getHostname()"></h3>-->
-<!--    <h3>Hello</h3>-->
     <div class="actions">
       <app-action-button
         icon="mbri-edit2"
@@ -20,8 +18,8 @@
 
   <div class="info">
     <div>
-      <span translate>records.hostname</span>
-      <pre [textContent]="getHostname()"></pre>
+      <span translate>records.description</span>
+      <pre>{{ recordType[record.recordType] }} {{ getHostname() }}</pre>
     </div>
     <div>
       <span translate>records.expected-value</span>
@@ -61,7 +59,7 @@
       <div class="content">
         <strong [textContent]="result.dnsServer?.name"></strong>
 
-        <div>
+        <div class="result-value">
           <span translate>results.value</span>:
           <span
             [className]="valueClass(result)"
