@@ -49,7 +49,7 @@ namespace DnsWatcher.Application.Services
 		public async Task<WatchedDomain> GetDomainAsync(Guid id, bool includeResults = false)
 		{
 			var query = _context.WatchedDomains
-				.Include(e => e.WatchedRecords)
+				.Include(e => e.WatchedRecords).ThenInclude(e => e.Results)
 				.AsQueryable();
 			if (includeResults)
 			{

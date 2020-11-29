@@ -170,5 +170,11 @@ export class RecordComponent
     return Config.defaultDateFormat + ':ss';
   }
 
+  get sortedResults(): Result[] {
+    const copy = this.record?.results ?? [];
+    copy.sort((a, b) => (a.dnsServer?.name ?? 0) > (b.dnsServer?.name ?? 0) ? 1 : -1);
+    return copy;
+  }
+
   // endregion
 }

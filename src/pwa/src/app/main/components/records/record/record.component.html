@@ -48,7 +48,7 @@
   >
     <div
       class="list-item"
-      *ngFor="let result of record.results"
+      *ngFor="let result of sortedResults"
     >
       <div class="content">
         <strong [textContent]="result.dnsServer?.name"></strong>
