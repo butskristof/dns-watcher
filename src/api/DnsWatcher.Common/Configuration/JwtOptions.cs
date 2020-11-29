@@ -4,13 +4,15 @@
 	{
 		string Key { get; }
 		string Issuer { get; }
-		int ExpireSeconds { get; }
+		int AccessTokenExpireSeconds { get; }
+		int RefreshTokenExpireDays { get; }
 	}
 
 	public class JwtOptions : IJwtOptions
 	{
 		public string Key { get; set; }
 		public string Issuer { get; set; }
-		public int ExpireSeconds { get; set; }
+		public int AccessTokenExpireSeconds { get; set; }
+		public int RefreshTokenExpireDays { get; set; }
 	}
 }

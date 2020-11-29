@@ -9,6 +9,6 @@ namespace DnsWatcher.Application.Contracts.Dto.Auth
 		public string AccessToken { get; set; }
 		public DateTime AccessTokenValidUntil { get; set; }
 		public string RefreshToken { get; set; }
-		public DateTime RefreshTokenExpiration { get; set; }
+		public DateTime RefreshTokenValidUntil { get; set; }
 	}
 }

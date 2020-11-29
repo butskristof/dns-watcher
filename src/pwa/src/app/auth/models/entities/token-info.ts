@@ -3,6 +3,8 @@ export class TokenInfo {
   username?: string;
   accessToken?: string;
   accessTokenValidUntil?: Date;
+  refreshToken?: string;
+  refreshTokenValidUntil?: Date;
 
   constructor(tokenInfo: TokenInfo | null = null) {
     if (tokenInfo) {

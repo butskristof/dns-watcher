@@ -33,7 +33,7 @@ namespace DnsWatcher.Application.Helpers
 			};
 			var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.Key));
 			var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-			var expires = _dateTime.Now.AddSeconds(Convert.ToDouble(_jwtOptions.ExpireSeconds));
+			var expires = _dateTime.Now.AddSeconds(Convert.ToDouble(_jwtOptions.AccessTokenExpireSeconds));
 
 			var token = new JwtSecurityToken(
 				_jwtOptions.Issuer,
