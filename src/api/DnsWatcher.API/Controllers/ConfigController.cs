@@ -1,4 +1,6 @@
-﻿using DnsWatcher.Common.Configuration;
+﻿using System;
+using DnsWatcher.Common.Configuration;
+using DnsWatcher.Domain.Enumerations;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,7 +31,8 @@ namespace DnsWatcher.API.Controllers
 				{
 					_applicationInfo.Version,
 					_applicationInfo.Environment,
-				}
+				},
+				RecordType = Enum.GetNames(typeof(RecordType))
 			};
 			return Ok(ret);
 		}

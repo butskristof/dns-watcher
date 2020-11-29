@@ -55,7 +55,6 @@ export class DomainComponent
       .getDomain(this.domainId)
       .subscribe(result => {
         this.domain = result;
-        this.createRecord();
       });
   }
 
@@ -66,7 +65,10 @@ export class DomainComponent
   createRecord(): void {
     const ref = this.dialogService
       .open(EditRecordComponent, {
-        data: { domainId: this.domain?.id }
+        data: {
+          domainId: this.domain?.id,
+          domainName: this.domain?.domainName,
+        }
       });
     ref.afterClosed
       .subscribe(result => {

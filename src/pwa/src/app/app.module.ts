@@ -64,6 +64,8 @@ export function initApp(http: HttpClient): () => void {
           .then(result => {
             Config.version = result.applicationInfo.version;
             Config.environment = result.applicationInfo.environment;
+
+            Config.recordType = result.recordType;
           });
       });
   };

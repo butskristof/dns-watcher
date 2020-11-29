@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Record} from '../../../models/entities/domains/record';
 import {CreateOrUpdateRecordData} from '../../../models/data/domains/create-or-update-record-data';
 import {DialogConfig} from '../../../../dialog/models/dialog-config';
@@ -7,6 +7,8 @@ import {DialogRef} from '../../../../dialog/models/dialog-ref';
 import {ErrorService} from '../../../../shared/services/error.service';
 import {NotifierService} from '../../../../shared/services/notifier.service';
 import {RecordsService} from '../../../services/records.service';
+import {RecordType} from '../../../models/entities/domains/record-type';
+import {Config} from '../../../../config';
 
 @Component({
   selector: 'app-edit-record',
@@ -19,8 +21,11 @@ export class EditRecordComponent implements OnInit {
   form?: FormGroup;
   error?: string;
 
+  recordTypes = Config.recordType;
+
   private record?: Record;
   private domainId?: string;
+  private domainName?: string;
   private data = new CreateOrUpdateRecordData();
 
   // endregion
@@ -38,6 +43,9 @@ export class EditRecordComponent implements OnInit {
     if (this.config.data.domainId) {
       this.domainId = this.config.data.domainId;
     }
+    if (this.config.data.domainName) {
+      this.domainName = this.config.data.domainName;
+    }
     if (this.config.data.record) {
       this.record = this.config.data.record;
       this.data = new CreateOrUpdateRecordData(this.record);
@@ -49,7 +57,10 @@ export class EditRecordComponent implements OnInit {
   // region form
   private buildForm(): void {
     this.form = this.formBuilder.group({
-
+      recordType: [this.data.recordType],
+      prefix: [this.data.prefix],
+      expectedValue: [this.data.expectedValue, Validators.required],
+      expectedTimeToLive: [this.data.expectedTimeToLive, Validators.required]
     });
   }
 

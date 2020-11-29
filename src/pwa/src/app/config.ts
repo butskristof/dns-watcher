@@ -5,4 +5,6 @@ export class Config {
 
   public static defaultDateFormat = 'yyyy-MM-dd HH:mm';
   public static defaultDayFormat = 'yyyy-MM-dd';
+
+  public static recordType: string[] = [];
 }

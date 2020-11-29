@@ -46,6 +46,7 @@
       "title-edit": "Edit record",
       "title-create": "Add record",
       "placeholders": {
+        "prefix": "e.g. www"
       }
     }
   },
@@ -79,7 +80,9 @@
     "ipAddress": "IP address",
     "port": "Port",
     "expectedValue": "Expected value",
-    "expectedTimeToLive": "Expected time to live"
+    "expectedTimeToLive": "Expected time to live",
+    "prefix": "Hostname",
+    "recordType": "Record type"
   },
   "errors": {
     "unexpected": "An unexpected exception occurred.",
