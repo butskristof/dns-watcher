@@ -38,6 +38,7 @@
     "back-domain": "Back to domain",
     "type": "Record type",
     "hostname": "Hostname",
+    "description": "Record description",
     "expected-value": "Expected value",
     "expected-ttl": "Expected TTL",
     "edit": {

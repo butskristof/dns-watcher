@@ -2,7 +2,7 @@
   *ngIf="record != null"
 >
   <div class="basic-header">
-    <h3 [textContent]="getHostname()"></h3>
+    <div></div>
     <div class="actions">
       <app-action-button
         icon="mbri-edit2"
@@ -18,10 +18,16 @@
 
   <div class="info">
     <div>
-      <span translate>records.expected-value</span>: {{ record.expectedValue }}
+      <span translate>records.description</span>
+      <pre>{{ recordType[record.recordType] }} {{ getHostname() }}</pre>
     </div>
     <div>
-      <span translate>records.expected-ttl</span>: {{ record.expectedTimeToLive }}
+      <span translate>records.expected-value</span>
+      <pre [textContent]="record.expectedValue"></pre>
+    </div>
+    <div>
+      <span translate>records.expected-ttl</span>
+      <pre [textContent]="record.expectedTimeToLive"></pre>
     </div>
     <app-domain-propagation
       [record]="record"
@@ -53,7 +59,7 @@
       <div class="content">
         <strong [textContent]="result.dnsServer?.name"></strong>
 
-        <div>
+        <div class="result-value">
           <span translate>results.value</span>:
           <span
             [className]="valueClass(result)"
