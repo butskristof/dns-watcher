@@ -1,0 +1,23 @@
+@import "variables";
+
+.indicator {
+  margin-bottom: 0;
+  height: 2.5rem;
+  line-height: 2.5rem;
+
+  &.dev {
+    border-color: $text-color;
+    background-color: $text-color;
+    color: $white;
+  }
+
+  &.production {
+    display: none;
+  }
+
+  &.staging {
+    border-color: $red;
+    background-color: $red;
+    color: $white;
+  }
+}
