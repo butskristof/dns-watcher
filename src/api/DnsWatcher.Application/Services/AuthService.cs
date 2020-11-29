@@ -86,6 +86,36 @@ namespace DnsWatcher.Application.Services
 			await _context.SaveChangesAsync();
 		}
 
+		public async Task<TokenDto> RefreshToken(RefreshData data)
+		{
+			var user = await _context
+				.Users
+				.Include(e => e.RefreshTokens)
+				.SingleOrDefaultAsync(e => e.RefreshTokens
+					.Any(t => t.Token == data.RefreshToken))
+				?? throw new ForbiddenException($"Invalid refresh token.");
+			var token = user.RefreshTokens
+				.Single(e => e.Token == data.RefreshToken);
+			if (token.Revoked != null || _dateTime.Now >= token.Expires)
+			{
+				throw new ForbiddenException("Invalid refresh token");
+			}
+			
+			// revoke current
+			token.Revoked = _dateTime.Now;
+			// generate new
+			var newToken = CreateRefreshToken();
+			user.RefreshTokens.Add(newToken);
+			await _context.SaveChangesAsync();
+			
+			// return new access + refresh
+			var r = _jwtHelper.GenerateJwtToken(user);
+			r.RefreshToken = newToken.Token;
+			r.RefreshTokenValidUntil = newToken.Expires;
+			
+			return r;
+		}
+
 		private bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
 		{
 			if (storedHash.Length != 64)

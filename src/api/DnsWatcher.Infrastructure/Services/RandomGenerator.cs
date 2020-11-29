@@ -9,7 +9,7 @@ namespace DnsWatcher.Infrastructure.Services
 		public string GetRandomBase64ByteString(int numberOfBytes)
 		{
 			var container = new byte[numberOfBytes];
-			using var generator = new RNGCryptoServiceProvider();
+			using var generator = RandomNumberGenerator.Create();
 			generator.GetBytes(container);
 			return Convert.ToBase64String(container);
 		}
