@@ -25,7 +25,7 @@ export class RecordsService {
 
   saveRecord(domainId: string, data: CreateOrUpdateRecordData)
     : Observable<Record> {
-    let url = `${this.baseUrl}/${domainId}/records/`;
+    let url = `${this.baseUrl}/${domainId}/records`;
     if (data.id) {
       url = `${url}/${data.id}`;
       return this.http

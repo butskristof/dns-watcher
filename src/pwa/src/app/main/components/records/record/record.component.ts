@@ -7,6 +7,10 @@ import utilities from '../../../../shared/helpers/utilities';
 import {DomainsService} from '../../../services/domains.service';
 import {Result} from '../../../models/entities/domains/result';
 import {Config} from '../../../../config';
+import {ActionButtonStyle} from '../../../../shared/models/viewmodels/action-button-style';
+import {DialogService} from '../../../../dialog/services/dialog.service';
+import {NotifierService} from '../../../../shared/services/notifier.service';
+import {EditRecordComponent} from '../edit-record/edit-record.component';
 
 @Component({
   selector: 'app-record',
@@ -20,8 +24,10 @@ export class RecordComponent
   @Input()
   recordId: string | null | undefined = null;
 
-  record: Record | null = null;
-  domain: Domain | null = null;
+  actionButtonStyles = ActionButtonStyle;
+
+  record?: Record;
+  domain?: Domain;
   recordType = RecordType;
 
   updating = false;
@@ -29,6 +35,8 @@ export class RecordComponent
   constructor(
     private readonly recordsService: RecordsService,
     private readonly domainsService: DomainsService,
+    private readonly dialogService: DialogService,
+    private readonly notifier: NotifierService
   ) {
   }
 
@@ -42,9 +50,31 @@ export class RecordComponent
   }
 
   // region actions
+
+  edit(): void {
+    const ref = this.dialogService
+      .open(EditRecordComponent, {
+        data: {
+          domainId: this.domain?.id,
+          domainName: this.domain?.domainName,
+          record: this.record
+        }
+      });
+    ref.afterClosed
+      .subscribe(result => {
+        if (result) {
+          this.loadRecord();
+        }
+      }, error => this.notifier.showErrorToast(error));
+  }
+
+  promptDelete(): void {
+
+  }
+
   updateResults(): void {
     if (this.domainId == null || this.recordId == null) {
-      this.record = null;
+      this.record = undefined;
       return;
     }
 
@@ -60,7 +90,7 @@ export class RecordComponent
   // region fetch data
   private loadRecord(): void {
     if (this.domainId == null || this.recordId == null) {
-      this.record = null;
+      this.record = undefined;
       return;
     }
 
@@ -94,7 +124,7 @@ export class RecordComponent
   }
 
   indicatorClass(result: Result): string {
-    return 'indicator '+ (this.valueMatches(result) && this.ttlMatches(result)
+    return 'indicator ' + (this.valueMatches(result) && this.ttlMatches(result)
       ? 'ok' : 'nok');
   }
 
