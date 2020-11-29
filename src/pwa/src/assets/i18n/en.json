@@ -51,13 +51,14 @@
     }
   },
   "results": {
+    "title": "Results",
     "value": "Value",
-    "ttl": "Time to live",
+    "ttl": "TTL",
     "server": "Server",
     "matches": "matches",
     "ok": "OK",
     "nok": "not OK",
-    "age": "updated"
+    "age": "Last updated"
   },
   "dns-servers": {
     "title": "DNS servers",

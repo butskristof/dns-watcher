@@ -14,8 +14,7 @@ import {Config} from '../../../../config';
   styleUrls: ['./record.component.scss']
 })
 export class RecordComponent
-  implements OnInit, OnChanges
-{
+  implements OnInit, OnChanges {
   @Input()
   domainId: string | null = null;
   @Input()
@@ -30,7 +29,8 @@ export class RecordComponent
   constructor(
     private readonly recordsService: RecordsService,
     private readonly domainsService: DomainsService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
   }
@@ -54,6 +54,7 @@ export class RecordComponent
       .subscribe(() => this.loadRecord())
       .add(() => this.updating = false);
   }
+
   // endregion
 
   // region fetch data
@@ -70,15 +71,10 @@ export class RecordComponent
       .getRecord(this.domainId, this.recordId)
       .subscribe(result => this.record = result);
   }
+
   // endregion
 
   // region getters
-  get stringified(): string {
-    return this.record == null
-      ? ''
-      : JSON.stringify(this.record, null, 2);
-  }
-
   getHostname(): string {
     if (this.record == null) {
       return '';
@@ -89,16 +85,27 @@ export class RecordComponent
       : `${this.record.prefix}.${this.domain?.domainName}`;
   }
 
-  matchesValue(result: Result): boolean {
+  valueClass(result: Result): string {
+    return this.valueMatches(result) ? 'ok' : 'nok';
+  }
+
+  ttlClass(result: Result): string {
+    return this.ttlMatches(result) ? 'ok' : 'nok';
+  }
+
+  indicatorClass(result: Result): string {
+    return 'indicator '+ (this.valueMatches(result) && this.ttlMatches(result)
+      ? 'ok' : 'nok');
+  }
+
+  private valueMatches(result: Result): boolean {
     return result.value === this.record?.expectedValue;
   }
 
-  matchesTtl(result: Result): boolean {
-    if (result?.timeToLive == null) {
-      return false;
-    }
-
-    return result.timeToLive > 0 && result.timeToLive <= (this.record?.expectedTimeToLive ?? -1);
+  private ttlMatches(result: Result): boolean {
+    return result.timeToLive !== undefined
+      && result.timeToLive > 0
+      && result.timeToLive <= (this.record?.expectedTimeToLive ?? -1);
   }
 
   get dateFormat(): string {

@@ -1,29 +1,28 @@
-table {
-  border: 1px solid black;
-  border-collapse: collapse;
+@import "variables";
 
-  th, td {
-    border: 1px solid black;
-  }
-}
-
-.ok {
-  background-color: lightgreen;
-}
-
-.nok {
-  background-color: lightcoral;
-}
-
-
-.update-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
+.info {
   margin-bottom: 1rem;
+}
 
-  button {
-    margin-right: 1rem;
+.content {
+  .ok {
+    color: $green;
+  }
+
+  .nok {
+    color: $red;
   }
 }
+
+.indicator {
+  width: 2rem;
+
+  &.ok {
+    background-color: $green;
+  }
+
+  &.nok {
+    background-color: $red;
+  }
+}
+
