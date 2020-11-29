@@ -45,8 +45,8 @@ namespace DnsWatcher.Application.Helpers
 			var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
 			return new TokenDto
 			{
-				Token = tokenString,
-				ValidUntil = expires,
+				AccessToken = tokenString,
+				AccessTokenValidUntil = expires,
 				UserId = user.Id.ToSafeString(),
 				Username = user.Username
 			};

@@ -1,4 +1,5 @@
-﻿using DnsWatcher.Domain.Common;
+﻿using System.Collections.Generic;
+using DnsWatcher.Domain.Common;
 
 namespace DnsWatcher.Domain.Entities.Identity
 {
@@ -8,5 +9,7 @@ namespace DnsWatcher.Domain.Entities.Identity
 		public byte[] PasswordHash { get; set; }
 		public byte[] PasswordSalt { get; set; }
 		public bool Active { get; } = false;
+
+		public ICollection<RefreshToken> RefreshTokens { get; set; }
 	}
 }

@@ -21,13 +21,13 @@ export class CredentialsService {
   }
 
   get token(): string | null {
-    return this.credentials?.token ?? null;
+    return this.credentials?.accessToken ?? null;
   }
 
   setCredentials(credentials?: TokenInfo, remember?: boolean): void {
     if (credentials) {
       const storage = remember ? localStorage : sessionStorage;
-      const ttl = new Date(credentials.validUntil ?? 0).getTime() - new Date().getTime();
+      const ttl = new Date(credentials.accessTokenValidUntil ?? 0).getTime() - new Date().getTime();
       this.setWithExpiry(storage, credentialsKey, JSON.stringify(credentials), ttl);
     } else {
       sessionStorage.removeItem(credentialsKey);
