@@ -3,15 +3,17 @@ using System;
 using DnsWatcher.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DnsWatcher.Persistence.Migrations
 {
     [DbContext(typeof(DnsWatcherDbContext))]
-    partial class DnsWatcherDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201129110455_RemoveRecordType")]
+    partial class RemoveRecordType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -142,9 +144,6 @@ namespace DnsWatcher.Persistence.Migrations
                     b.Property<string>("Prefix")
                         .HasMaxLength(512)
                         .HasColumnType("character varying(512)");
-
-                    b.Property<int>("RecordType")
-                        .HasColumnType("integer");
 
                     b.Property<Guid>("WatchedDomainId")
                         .HasColumnType("uuid");
