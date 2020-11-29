@@ -41,7 +41,13 @@
     "type": "Record type",
     "hostname": "Hostname",
     "expected-value": "Expected value",
-    "expected-ttl": "Expected TTL"
+    "expected-ttl": "Expected TTL",
+    "edit": {
+      "title-edit": "Edit record",
+      "title-create": "Add record",
+      "placeholders": {
+      }
+    }
   },
   "results": {
     "value": "Value",
@@ -71,7 +77,9 @@
   "fields": {
     "name": "Name",
     "ipAddress": "IP address",
-    "port": "Port"
+    "port": "Port",
+    "expectedValue": "Expected value",
+    "expectedTimeToLive": "Expected time to live"
   },
   "errors": {
     "unexpected": "An unexpected exception occurred.",

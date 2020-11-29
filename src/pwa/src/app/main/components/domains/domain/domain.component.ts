@@ -9,6 +9,7 @@ import {ActionButtonStyle} from '../../../../shared/models/viewmodels/action-but
 import {EditDomainComponent} from '../edit-domain/edit-domain.component';
 import {DialogService} from '../../../../dialog/services/dialog.service';
 import {NotifierService} from '../../../../shared/services/notifier.service';
+import {EditRecordComponent} from '../../records/edit-record/edit-record.component';
 
 @Component({
   selector: 'app-domain',
@@ -24,8 +25,6 @@ export class DomainComponent
 
   recordType = RecordType;
   actionButtonStyles = ActionButtonStyle;
-
-  activeRecord: Record | null = null;
 
   constructor(
     private readonly domainsService: DomainsService,
@@ -54,15 +53,27 @@ export class DomainComponent
 
     this.domainsService
       .getDomain(this.domainId)
-      .subscribe(result => this.domain = result);
+      .subscribe(result => {
+        this.domain = result;
+        this.createRecord();
+      });
   }
 
   // endregion
 
   // region actions
 
-  setActiveRecord(record: Record): void {
-    this.activeRecord = record;
+  createRecord(): void {
+    const ref = this.dialogService
+      .open(EditRecordComponent, {
+        data: { domainId: this.domain?.id }
+      });
+    ref.afterClosed
+      .subscribe(result => {
+        if (result) {
+          this.loadDomain();
+        }
+      }, error => this.notifier.showErrorToast(error));
   }
 
   edit(): void {
