@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -7,7 +8,6 @@ using DnsWatcher.Application.Common.Interfaces;
 using DnsWatcher.Application.Contracts.Data.Domains;
 using DnsWatcher.Application.Contracts.Dto.Domains;
 using DnsWatcher.Application.Services.Interfaces;
-using DnsWatcher.Common.Constants;
 using DnsWatcher.Common.Exceptions;
 using DnsWatcher.Domain.Entities.Domains;
 using Microsoft.EntityFrameworkCore;
@@ -37,6 +37,7 @@ namespace DnsWatcher.Application.Services
 		public async Task<WatchedDomainsDto> GetWatchedDomainsAsync()
 		{
 			var domains = await _context.WatchedDomains
+				.OrderBy(e => e.DomainName)
 				.ToListAsync();
 			
 			return new WatchedDomainsDto
@@ -45,10 +46,17 @@ namespace DnsWatcher.Application.Services
 			};
 		}
 
-		public async Task<WatchedDomain> GetDomainAsync(Guid id)
+		public async Task<WatchedDomain> GetDomainAsync(Guid id, bool includeResults = false)
 		{
-			return await _context.WatchedDomains
+			var query = _context.WatchedDomains
 				.Include(e => e.WatchedRecords)
+				.AsQueryable();
+			if (includeResults)
+			{
+				query = query
+					.Include(e => e.WatchedRecords).ThenInclude(e => e.Results);
+			}
+			return await query
 				.FirstOrDefaultAsync(e => e.Id == id);
 		}
 		
@@ -83,7 +91,7 @@ namespace DnsWatcher.Application.Services
 
 		public async Task DeleteWatchedDomainAsync(Guid id)
 		{
-			var domain = await GetDomainAsync(id)
+			var domain = await GetDomainAsync(id, true)
 				?? throw new NotFoundException($"No WatchedDomain found with id {id}.");
 
 			_context.WatchedDomains.Remove(domain);

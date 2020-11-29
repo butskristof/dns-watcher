@@ -5,7 +5,11 @@ import {Record} from '../../../models/entities/domains/record';
 import utilities from '../../../../shared/helpers/utilities';
 import {RecordType} from '../../../models/entities/domains/record-type';
 import {NavigationService} from '../../../../shared/services/navigation.service';
-import {Config} from '../../../../config';
+import {ActionButtonStyle} from '../../../../shared/models/viewmodels/action-button-style';
+import {EditDomainComponent} from '../edit-domain/edit-domain.component';
+import {DialogService} from '../../../../dialog/services/dialog.service';
+import {NotifierService} from '../../../../shared/services/notifier.service';
+import {EditRecordComponent} from '../../records/edit-record/edit-record.component';
 
 @Component({
   selector: 'app-domain',
@@ -20,12 +24,13 @@ export class DomainComponent
   domain: Domain | null = null;
 
   recordType = RecordType;
-
-  activeRecord: Record | null = null;
+  actionButtonStyles = ActionButtonStyle;
 
   constructor(
     private readonly domainsService: DomainsService,
-    private readonly navigationService: NavigationService
+    private readonly navigationService: NavigationService,
+    private readonly dialogService: DialogService,
+    private readonly notifier: NotifierService
   ) {
   }
 
@@ -39,6 +44,7 @@ export class DomainComponent
   }
 
   // region fetch data
+
   private loadDomain(): void {
     if (this.domainId == null) {
       this.domain = null;
@@ -47,18 +53,77 @@ export class DomainComponent
 
     this.domainsService
       .getDomain(this.domainId)
-      .subscribe(result => this.domain = result);
+      .subscribe(result => {
+        this.domain = result;
+      });
+  }
+
+  // endregion
+
+  // region actions
+
+  createRecord(): void {
+    const ref = this.dialogService
+      .open(EditRecordComponent, {
+        data: {
+          domainId: this.domain?.id,
+          domainName: this.domain?.domainName,
+        }
+      });
+    ref.afterClosed
+      .subscribe(result => {
+        if (result) {
+          this.loadDomain();
+        }
+      }, error => this.notifier.showErrorToast(error));
+  }
+
+  edit(): void {
+    const ref = this.dialogService
+      .open(EditDomainComponent, {
+        data: { domain: this.domain }
+      });
+    ref.afterClosed
+      .subscribe(result => {
+        if (result) {
+          this.loadDomain();
+        }
+      }, error => this.notifier.showErrorToast(error));
+  }
+
+  promptDelete(): void {
+    const ref = this.dialogService
+      .confirm('domains.delete.message',
+        this.domain?.domainName,
+        'danger');
+
+    ref.afterClosed
+      .subscribe(result => {
+        if (result === true) {
+          this.deleteDomain();
+        }
+      });
+  }
+
+  private deleteDomain(): void {
+    if (this.domain?.id == null) {
+      return;
+    }
+
+    this.domainsService
+      .deleteDomain(this.domain.id)
+      .subscribe(result => {
+        this.notifier
+          .showSuccessToast('domains.delete.deleted', true);
+        this.navigationService
+          .goToUrl(this.navigationService.getDashboardLink());
+      }, error => this.notifier
+        .showErrorToast(error));
   }
 
   // endregion
 
   // region getters
-
-  get stringified(): string {
-    return this.domain == null
-      ? ''
-      : JSON.stringify(this.domain, null, 2);
-  }
 
   getHostname(record: Record): string {
     return utilities.isNullOrWhitespace(record.prefix)
@@ -66,18 +131,12 @@ export class DomainComponent
       : `${record.prefix}.${this.domain?.domainName}`;
   }
 
-  // endregion
-
-  // region actions
-  setActiveRecord(record: Record): void {
-    this.activeRecord = record;
-  }
-  // endregion
-
   getRecordDetailsLink(record: Record): string {
     if (this.domainId == null || record?.id == null) {
       return '';
     }
     return this.navigationService.getRecordDetailsLink(this.domainId, record.id);
   }
+
+  // endregion
 }

@@ -4,7 +4,7 @@ import {Observable, of} from 'rxjs';
 import {Config} from '../../config';
 import {map} from 'rxjs/operators';
 import {DnsServers} from '../models/entities/servers/dns-servers';
-import {CreateOrUpdateDnsServerData} from '../models/data/create-or-update-dns-server-data';
+import {CreateOrUpdateDnsServerData} from '../models/data/servers/create-or-update-dns-server-data';
 import {DnsServer} from '../models/entities/servers/dns-server';
 
 @Injectable({

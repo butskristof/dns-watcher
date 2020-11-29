@@ -7,6 +7,11 @@ import utilities from '../../../../shared/helpers/utilities';
 import {DomainsService} from '../../../services/domains.service';
 import {Result} from '../../../models/entities/domains/result';
 import {Config} from '../../../../config';
+import {ActionButtonStyle} from '../../../../shared/models/viewmodels/action-button-style';
+import {DialogService} from '../../../../dialog/services/dialog.service';
+import {NotifierService} from '../../../../shared/services/notifier.service';
+import {EditRecordComponent} from '../edit-record/edit-record.component';
+import {NavigationService} from '../../../../shared/services/navigation.service';
 
 @Component({
   selector: 'app-record',
@@ -14,15 +19,16 @@ import {Config} from '../../../../config';
   styleUrls: ['./record.component.scss']
 })
 export class RecordComponent
-  implements OnInit, OnChanges
-{
+  implements OnInit, OnChanges {
   @Input()
   domainId: string | null = null;
   @Input()
   recordId: string | null | undefined = null;
 
-  record: Record | null = null;
-  domain: Domain | null = null;
+  actionButtonStyles = ActionButtonStyle;
+
+  record?: Record;
+  domain?: Domain;
   recordType = RecordType;
 
   updating = false;
@@ -30,7 +36,11 @@ export class RecordComponent
   constructor(
     private readonly recordsService: RecordsService,
     private readonly domainsService: DomainsService,
-  ) { }
+    private readonly dialogService: DialogService,
+    private readonly notifier: NotifierService,
+    private readonly navigationService: NavigationService
+  ) {
+  }
 
   ngOnInit(): void {
   }
@@ -42,9 +52,41 @@ export class RecordComponent
   }
 
   // region actions
+
+  edit(): void {
+    const ref = this.dialogService
+      .open(EditRecordComponent, {
+        data: {
+          domainId: this.domain?.id,
+          domainName: this.domain?.domainName,
+          record: this.record
+        }
+      });
+    ref.afterClosed
+      .subscribe(result => {
+        if (result) {
+          this.loadRecord();
+        }
+      }, error => this.notifier.showErrorToast(error));
+  }
+
+  promptDelete(): void {
+    const ref = this.dialogService
+      .confirm('records.delete.message',
+        this.getHostname(),
+        'danger');
+
+    ref.afterClosed
+      .subscribe(result => {
+        if (result === true) {
+          this.deleteRecord();
+        }
+      });
+  }
+
   updateResults(): void {
     if (this.domainId == null || this.recordId == null) {
-      this.record = null;
+      this.record = undefined;
       return;
     }
 
@@ -54,12 +96,29 @@ export class RecordComponent
       .subscribe(() => this.loadRecord())
       .add(() => this.updating = false);
   }
+
+  private deleteRecord(): void {
+    if (this.record?.id == null || this.domainId == null) {
+      return;
+    }
+
+    this.recordsService
+      .deleteRecord(this.domainId, this.record.id)
+      .subscribe(result => {
+        this.notifier
+          .showSuccessToast('records.delete.deleted', true);
+        this.navigationService
+          .goToUrl(this.navigationService.getDomainDetailsLink(this.domainId ?? ''));
+      }, error => this.notifier
+        .showErrorToast(error));
+  }
+
   // endregion
 
   // region fetch data
   private loadRecord(): void {
     if (this.domainId == null || this.recordId == null) {
-      this.record = null;
+      this.record = undefined;
       return;
     }
 
@@ -70,15 +129,10 @@ export class RecordComponent
       .getRecord(this.domainId, this.recordId)
       .subscribe(result => this.record = result);
   }
+
   // endregion
 
   // region getters
-  get stringified(): string {
-    return this.record == null
-      ? ''
-      : JSON.stringify(this.record, null, 2);
-  }
-
   getHostname(): string {
     if (this.record == null) {
       return '';
@@ -89,16 +143,27 @@ export class RecordComponent
       : `${this.record.prefix}.${this.domain?.domainName}`;
   }
 
-  matchesValue(result: Result): boolean {
+  valueClass(result: Result): string {
+    return this.valueMatches(result) ? 'ok' : 'nok';
+  }
+
+  ttlClass(result: Result): string {
+    return this.ttlMatches(result) ? 'ok' : 'nok';
+  }
+
+  indicatorClass(result: Result): string {
+    return 'indicator ' + (this.valueMatches(result) && this.ttlMatches(result)
+      ? 'ok' : 'nok');
+  }
+
+  private valueMatches(result: Result): boolean {
     return result.value === this.record?.expectedValue;
   }
 
-  matchesTtl(result: Result): boolean {
-    if (result?.timeToLive == null) {
-      return false;
-    }
-
-    return result.timeToLive > 0 && result.timeToLive <= (this.record?.expectedTimeToLive ?? -1);
+  private ttlMatches(result: Result): boolean {
+    return result.timeToLive !== undefined
+      && result.timeToLive > 0
+      && result.timeToLive <= (this.record?.expectedTimeToLive ?? -1);
   }
 
   get dateFormat(): string {

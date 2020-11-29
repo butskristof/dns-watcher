@@ -1,7 +1,18 @@
-<button
-  type="button"
+<a
+  *ngIf="link; else notLink"
   [classList]="buttonClassList"
-  (click)="handleClick($event)"
+  [routerLink]="link"
 >
   <i [ngClass]="icon"></i>
-</button>
+</a>
+<ng-template
+  #notLink
+>
+  <button
+    type="button"
+    [classList]="buttonClassList"
+    (click)="handleClick($event)"
+  >
+    <i [ngClass]="icon"></i>
+  </button>
+</ng-template>

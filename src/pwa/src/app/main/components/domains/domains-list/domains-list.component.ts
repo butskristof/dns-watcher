@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Domain} from '../../../models/entities/domains/domain';
 import {DomainsService} from '../../../services/domains.service';
 import {NavigationService} from '../../../../shared/services/navigation.service';
+import {DialogService} from '../../../../dialog/services/dialog.service';
+import {EditDomainComponent} from '../edit-domain/edit-domain.component';
+import {NotifierService} from '../../../../shared/services/notifier.service';
 
 @Component({
   selector: 'app-domains-list',
@@ -13,7 +16,9 @@ export class DomainsListComponent implements OnInit {
 
   constructor(
     private readonly domainsService: DomainsService,
-    private readonly navigationService: NavigationService
+    private readonly navigationService: NavigationService,
+    private readonly dialogService: DialogService,
+    private readonly notifier: NotifierService
   ) { }
 
   ngOnInit(): void {
@@ -25,6 +30,21 @@ export class DomainsListComponent implements OnInit {
     this.domainsService
       .getDomains()
       .subscribe(result => this.domains = result.domains);
+  }
+  // endregion
+
+  // region actions
+  create(): void {
+    const ref = this.dialogService
+      .open(EditDomainComponent, {
+        data: {}
+      });
+    ref.afterClosed
+      .subscribe(result => {
+        if (result) {
+          this.loadDomains();
+        }
+      }, error => this.notifier.showErrorToast(error));
   }
   // endregion
 

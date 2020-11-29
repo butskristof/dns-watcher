@@ -1,4 +1,5 @@
 ﻿using DnsWatcher.Common.Constants;
+using DnsWatcher.Common.Enumerations;
 using DnsWatcher.Common.Extensions;
 using FluentValidation;
 
@@ -12,7 +13,10 @@ namespace DnsWatcher.Application.Contracts.Data.Domains.Validators
 		{
 			RuleFor(e => e.ExpectedValue)
 				.Cascade(CascadeMode.Stop)
-				.IpAddress();
+				.NotNull()
+				.WithErrorCode(ErrorCode.Required)
+				.NotEmpty()
+				.WithErrorCode(ErrorCode.Required);
 			
 			RuleFor(e => e.ExpectedTimeToLive)
 				.Cascade(CascadeMode.Stop)

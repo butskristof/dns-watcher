@@ -1,4 +1,4 @@
-import {DnsServer} from '../entities/servers/dns-server';
+import {DnsServer} from '../../entities/servers/dns-server';
 
 export class CreateOrUpdateDnsServerData {
   name?: string;

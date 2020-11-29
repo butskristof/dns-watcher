@@ -1,44 +1,58 @@
 <ng-container
   *ngIf="domain != null"
 >
-  <h2 [textContent]="domain.domainName"></h2>
+  <div class="basic-header">
+    <h3 [textContent]="domain.domainName"></h3>
+    <div class="actions">
+      <app-action-button
+        icon="mbri-plus"
+        (clicked)="createRecord()"
+      ></app-action-button>
+      <app-action-button
+        icon="mbri-edit2"
+        (clicked)="edit()"
+      ></app-action-button>
+      <app-action-button
+        icon="mbri-trash"
+        [buttonStyle]="actionButtonStyles.Danger"
+        (clicked)="promptDelete()"
+      ></app-action-button>
+    </div>
+  </div>
 
-  <table>
-    <thead>
-    <tr>
-      <th translate>records.type</th>
-      <th translate>records.hostname</th>
-      <th translate>records.expected-value</th>
-      <th translate>records.expected-ttl</th>
-      <th>&nbsp;</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr
+  <div
+    class="list"
+    *ngIf="domain.watchedRecords.length > 0; else emptyRecords"
+  >
+    <div
+      class="list-item"
       *ngFor="let record of domain.watchedRecords"
     >
-      <td [textContent]="recordType[record.recordType!]"></td>
-      <td [textContent]="getHostname(record)"></td>
-      <td [textContent]="record.expectedValue"></td>
-      <td [textContent]="record.expectedTimeToLive"></td>
-      <td>
-        <a
-          [routerLink]=""
-          (click)="setActiveRecord(record)"
-          translate
-        >domains.record-results</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-
-  <ng-container
-    *ngIf="activeRecord"
+      <div class="content">
+        <strong>
+          {{ getHostname(record) }} ({{ record.prettyRecordType }})
+        </strong>
+        <div>
+          <span translate>records.expected-value</span>: {{ record.expectedValue }}
+        </div>
+        <div>
+          <span translate>records.expected-ttl</span>: {{ record.expectedTimeToLive }}
+        </div>
+        <app-domain-propagation
+          [record]="record"
+        ></app-domain-propagation>
+      </div>
+      <div class="actions">
+        <app-action-button
+          [link]="getRecordDetailsLink(record)"
+          icon="mbri-right"
+        ></app-action-button>
+      </div>
+    </div>
+  </div>
+  <ng-template
+    #emptyRecords
   >
-    <app-record
-      [recordId]="activeRecord.id"
-      [domainId]="domainId"
-    ></app-record>
-  </ng-container>
-
+    <span translate>records.empty</span>
+  </ng-template>
 </ng-container>
