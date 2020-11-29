@@ -1,6 +1,7 @@
 <div [classList]="classList">
   <h4 [textContent]="message" translate></h4>
   <p
+    class="dialog-content"
     *ngIf="content"
     [textContent]="content"
   ></p>

@@ -2,6 +2,18 @@
 
 .info {
   margin-bottom: 1rem;
+
+  pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
 }
 
 .content {
@@ -15,7 +27,8 @@
 }
 
 .indicator {
-  width: 2rem;
+  min-width: 2rem;
+  margin-left: 1rem;
 
   &.ok {
     background-color: $green;
@@ -32,4 +45,8 @@
   .actions button {
     vertical-align: middle;
   }
+}
+
+.result-value {
+  overflow-wrap: anywhere;
 }

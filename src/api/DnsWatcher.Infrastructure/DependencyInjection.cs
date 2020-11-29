@@ -16,6 +16,8 @@ namespace DnsWatcher.Infrastructure
 				.AddScoped<IEncryptionHelper, StringCipher>();
 			services
 				.AddScoped<IDnsResolver, DnsResolver>();
+			services
+				.AddSingleton<IRandomGenerator, RandomGenerator>();
 
 			return services;
 		}

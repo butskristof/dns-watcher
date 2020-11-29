@@ -95,7 +95,7 @@ namespace DnsWatcher.Infrastructure.Services
 				}
 				else if (result is TxtRecord txt)
 				{
-					res.Value = txt.Text.ToString();
+					res.Value = txt.Text.FirstOrDefault();
 				}
 			}
 

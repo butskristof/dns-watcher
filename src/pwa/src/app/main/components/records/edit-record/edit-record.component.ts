@@ -73,7 +73,6 @@ export class EditRecordComponent implements OnInit {
   save(): void {
     this.clearError();
     Object.assign(this.data, this.form?.value);
-    console.log('hello');
     if (!this.error && this.domainId) {
       this.recordsService
         .saveRecord(this.domainId, this.data)

@@ -11,10 +11,6 @@ namespace DnsWatcher.Persistence.Configurations
 			builder
 				.Property(e => e.Id)
 				.ValueGeneratedOnAdd();
-
-			builder
-				.Property(e => e.RecordType)
-				.HasConversion<string>();
 		}
 	}
 }

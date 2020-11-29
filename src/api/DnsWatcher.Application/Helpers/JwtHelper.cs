@@ -33,7 +33,7 @@ namespace DnsWatcher.Application.Helpers
 			};
 			var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.Key));
 			var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-			var expires = _dateTime.Now.AddSeconds(Convert.ToDouble(_jwtOptions.ExpireSeconds));
+			var expires = _dateTime.Now.AddSeconds(Convert.ToDouble(_jwtOptions.AccessTokenExpireSeconds));
 
 			var token = new JwtSecurityToken(
 				_jwtOptions.Issuer,
@@ -45,8 +45,8 @@ namespace DnsWatcher.Application.Helpers
 			var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
 			return new TokenDto
 			{
-				Token = tokenString,
-				ValidUntil = expires,
+				AccessToken = tokenString,
+				AccessTokenValidUntil = expires,
 				UserId = user.Id.ToSafeString(),
 				Username = user.Username
 			};
