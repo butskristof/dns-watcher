@@ -4,7 +4,7 @@
     "cancel": "Cancel",
     "ok": "OK",
     "save": "Save",
-    "saved": "Changes were saved."
+    "saved": "Changes were saved"
   },
   "login": {
     "username": "Username",
@@ -23,7 +23,7 @@
     "record-results": "Results",
     "delete": {
       "message": "Delete domain?",
-      "deleted": "Domain was deleted."
+      "deleted": "Domain was deleted"
     },
     "edit": {
       "title-edit": "Edit domain",
@@ -49,8 +49,9 @@
     },
     "delete": {
       "message": "Delete record?",
-      "deleted": "Record was deleted."
-    }
+      "deleted": "Record was deleted"
+    },
+    "empty": "Add some records to get started."
   },
   "results": {
     "title": "Results",
@@ -62,13 +63,14 @@
     "nok": "not OK",
     "age": "Last updated",
     "update": "Update",
-    "updating": "Updating"
+    "updating": "Updating",
+    "empty": "No results have been recorded yet."
   },
   "dns-servers": {
     "title": "DNS servers",
     "delete": {
       "message": "Delete DNS server?",
-      "deleted": "DNS server was deleted."
+      "deleted": "DNS server was deleted"
     },
     "edit": {
       "title-edit": "Edit DNS server",

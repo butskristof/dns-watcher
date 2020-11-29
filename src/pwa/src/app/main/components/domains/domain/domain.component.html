@@ -20,7 +20,10 @@
     </div>
   </div>
 
-  <div class="list">
+  <div
+    class="list"
+    *ngIf="domain.watchedRecords.length > 0; else emptyRecords"
+  >
     <div
       class="list-item"
       *ngFor="let record of domain.watchedRecords"
@@ -47,4 +50,9 @@
       </div>
     </div>
   </div>
+  <ng-template
+    #emptyRecords
+  >
+    <span translate>records.empty</span>
+  </ng-template>
 </ng-container>

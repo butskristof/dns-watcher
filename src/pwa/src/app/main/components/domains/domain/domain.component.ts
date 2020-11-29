@@ -92,7 +92,33 @@ export class DomainComponent
   }
 
   promptDelete(): void {
+    const ref = this.dialogService
+      .confirm('domains.delete.message',
+        this.domain?.domainName,
+        'danger');
 
+    ref.afterClosed
+      .subscribe(result => {
+        if (result === true) {
+          this.deleteDomain();
+        }
+      });
+  }
+
+  private deleteDomain(): void {
+    if (this.domain?.id == null) {
+      return;
+    }
+
+    this.domainsService
+      .deleteDomain(this.domain.id)
+      .subscribe(result => {
+        this.notifier
+          .showSuccessToast('domains.delete.deleted', true);
+        this.navigationService
+          .goToUrl(this.navigationService.getDashboardLink());
+      }, error => this.notifier
+        .showErrorToast(error));
   }
 
   // endregion

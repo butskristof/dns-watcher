@@ -42,7 +42,10 @@
       </button>
     </div>
   </div>
-  <div class="list">
+  <div
+    class="list"
+    *ngIf="record.results.length > 0; else emptyResults"
+  >
     <div
       class="list-item"
       *ngFor="let result of record.results"
@@ -73,4 +76,11 @@
       ></div>
     </div>
   </div>
+  <ng-template
+    #emptyResults
+  >
+    <span translate>
+      results.empty
+    </span>
+  </ng-template>
 </ng-container>
