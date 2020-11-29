@@ -1,8 +1,9 @@
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable, of} from 'rxjs';
+import {BehaviorSubject, Observable, of, throwError} from 'rxjs';
 import {AuthService} from '../services/auth.service';
 import {Config} from '../../config';
+import {catchError, filter, switchMap, take} from 'rxjs/operators';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -11,7 +12,8 @@ export class TokenInterceptor implements HttpInterceptor {
 
   constructor(
     private readonly authService: AuthService
-  ) {}
+  ) {
+  }
 
   intercept(
     req: HttpRequest<any>,
@@ -23,7 +25,13 @@ export class TokenInterceptor implements HttpInterceptor {
         req = this.addToken(req, token);
       }
     }
-    return next.handle(req);
+    return next.handle(req)
+      .pipe(catchError(error => {
+        if (error instanceof HttpErrorResponse && error.status === 401) {
+          return this.handleUnauthorizedError(req, next);
+        }
+        return throwError(error);
+      }));
   }
 
   private addToken(request: HttpRequest<any>, token: string): HttpRequest<any> {
@@ -32,5 +40,38 @@ export class TokenInterceptor implements HttpInterceptor {
         Authorization: `Bearer ${token}`,
       },
     });
+  }
+
+  private handleUnauthorizedError(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    if (!this.isRefreshing) {
+      this.isRefreshing = true;
+      this.refreshTokenSubject.next(null);
+
+      return this.authService
+        .tryRefreshToken()
+        .pipe(
+          switchMap(token => {
+            this.isRefreshing = false;
+            this.refreshTokenSubject.next(token.accessToken);
+            return next.handle(this.addToken(req, token.accessToken ?? ''));
+          }),
+          catchError(() => {
+            this.isRefreshing = false;
+            return throwError('failedToRefreshToken');
+          })
+        );
+    } else {
+      return this.refreshTokenSubject
+        .pipe(
+          filter(token => token != null),
+          take(1),
+          switchMap(jwt => {
+            return next.handle(this.addToken(req, jwt));
+          })
+        );
+    }
   }
 }
