@@ -15,9 +15,14 @@
     flex-direction: row;
     justify-content: space-between;
 
+    .content {
+      overflow-wrap: anywhere;
+    }
+
     .actions {
       display: flex;
       align-items: center;
+      margin-left: 1rem;
 
       :not(:first-child) {
         margin-left: 0.5rem;
@@ -29,6 +34,7 @@
 .basic-header {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 
@@ -36,9 +42,11 @@
 
   h3 {
     margin-bottom: 0;
+    overflow-wrap: anywhere;
   }
 
   .actions {
+    margin-left: auto;
     :not(:first-child) {
       margin-left: 0.5rem;
     }
@@ -49,6 +57,10 @@
   .dialog-title {
     border-bottom: $border;
     margin-bottom: 1rem;
+  }
+
+  .dialog-content {
+    overflow-wrap: anywhere;
   }
 
   .dialog-actions {

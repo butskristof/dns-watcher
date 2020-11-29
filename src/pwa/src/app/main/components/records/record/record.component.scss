@@ -2,6 +2,18 @@
 
 .info {
   margin-bottom: 1rem;
+
+  pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
 }
 
 .content {

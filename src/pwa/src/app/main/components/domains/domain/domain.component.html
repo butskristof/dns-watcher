@@ -33,14 +33,10 @@
           {{ getHostname(record) }} ({{ record.prettyRecordType }})
         </strong>
         <div>
-          <span translate>records.expected-value</span>: {{ record.expectedValue }}
+          <app-domain-propagation
+            [record]="record"
+          ></app-domain-propagation>
         </div>
-        <div>
-          <span translate>records.expected-ttl</span>: {{ record.expectedTimeToLive }}
-        </div>
-        <app-domain-propagation
-          [record]="record"
-        ></app-domain-propagation>
       </div>
       <div class="actions">
         <app-action-button
