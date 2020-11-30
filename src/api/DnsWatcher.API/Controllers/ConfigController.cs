@@ -31,6 +31,7 @@ namespace DnsWatcher.API.Controllers
 				{
 					_applicationInfo.Version,
 					_applicationInfo.Environment,
+					_applicationInfo.Build,
 				},
 				RecordType = Enum.GetNames(typeof(RecordType))
 			};
